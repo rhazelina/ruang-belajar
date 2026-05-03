@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Luo-Learn · Materi &amp; Kisi-Kisi</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0F1A13;
+      --bg-surface: #2C2F2A;
+      --bg-card: #3F433C;
+      --bg-hover: #4E5147;
+      --text-primary: #DAD9D0;
+      --text-secondary: #A8A89E;
+      --text-muted: #7E7D70;
+      --primary-700: #84664D;
+      --primary-400: #B49C82;
+      --primary-300: #C3AB91;
+      --primary-100: #DDC6AD;
+      --accent-600: #5E8784;
+      --accent-400: #89AEB0;
+      --btn-primary: #84664D;
+      --btn-primary-hover: #6E4430;
+      --btn-primary-text: #DDC6AD;
+      --btn-accent: #5E8784;
+      --btn-accent-hover: #3E6667;
+      --btn-accent-text: #DAD9D0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+          max-width: 100%;
+    overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+    a { text-decoration: none; }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scroll-prog {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--btn-primary), var(--btn-accent));
+      transition: width 0.1s linear;
+    }
+
+    /* ===== NAVBAR ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(15,26,19,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(132,102,77,0.15);
+    }
+    .nav-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem; height: 62px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-primary);
+    }
+    .nav-brand img { height: 26px; }
+    .nav-brand span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+    }
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+    .nav-links a {
+      display: block; padding: 0.4rem 0.9rem;
+      color: var(--text-secondary); font-size: 0.855rem; font-weight: 500;
+      border-radius: 7px; transition: all 0.18s;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: rgba(132,102,77,0.12); }
+    .nav-links a.active { color: var(--primary-300); }
+    .nav-hamburger {
+      display: none; background: none; border: none;
+      color: var(--text-primary); cursor: pointer; padding: 6px;
+      border-radius: 7px; transition: background 0.18s;
+    }
+    .nav-hamburger:hover { background: rgba(132,102,77,0.12); }
+    .nav-mobile {
+      display: none; border-top: 1px solid rgba(132,102,77,0.1);
+      padding: 0 1.5rem; max-height: 0;
+      transition: max-height 0.3s ease, padding 0.3s;
+    }
+    .nav-mobile.open { display: block; max-height: 300px; padding: 0.75rem 1.5rem 1.25rem; }
+    .nav-mobile ul { list-style: none; }
+    .nav-mobile li a {
+      display: block; padding: 0.6rem 0.5rem;
+      color: var(--text-secondary); font-size: 0.9rem;
+      border-radius: 7px; transition: all 0.18s;
+    }
+    .nav-mobile li a:hover { color: var(--text-primary); background: rgba(132,102,77,0.1); }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      padding: 96px 1.5rem 2rem;
+      max-width: 1160px; margin: 0 auto;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .breadcrumb a { color: var(--text-muted); transition: color 0.18s; }
+    .breadcrumb a:hover { color: var(--primary-300); }
+    .breadcrumb-sep { opacity: 0.4; }
+    .page-header h1 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 0.5rem; }
+    .page-header p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
+
+    /* Progress Overview */
+    .prog-overview {
+      margin-top: 1.5rem;
+      background: var(--bg-surface);
+      border: 1px solid rgba(132,102,77,0.12);
+      border-radius: 12px; padding: 1.1rem 1.4rem;
+      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .prog-label { font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; }
+    .prog-bar-wrap {
+      flex: 1; min-width: 160px;
+      height: 6px; background: var(--bg-card);
+      border-radius: 100px; overflow: hidden;
+    }
+    .prog-bar-fill {
+      height: 100%; border-radius: 100px;
+      background: linear-gradient(90deg, var(--btn-primary), var(--btn-accent));
+      transition: width 0.5s ease;
+    }
+    .prog-count { font-size: 0.78rem; color: var(--primary-300); font-weight: 600; white-space: nowrap; }
+
+    /* ===== SEARCH + FILTER ===== */
+    .search-bar-section {
+      max-width: 1160px; margin: 0 auto;
+      padding: 0 1.5rem 2rem;
+    }
+    .search-wrap {
+      position: relative; margin-bottom: 1rem;
+    }
+    .search-wrap svg {
+      position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-muted); pointer-events: none;
+    }
+    .search-input {
+      width: 100%; padding: 0.7rem 1rem 0.7rem 2.6rem;
+      background: var(--bg-surface);
+      border: 1px solid rgba(132,102,77,0.15);
+      border-radius: 10px; color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.875rem;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      outline: none;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus {
+      border-color: rgba(94,135,132,0.4);
+      box-shadow: 0 0 0 3px rgba(94,135,132,0.08);
+    }
+    .filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .chip {
+      padding: 5px 13px; border-radius: 100px;
+      border: 1px solid rgba(132,102,77,0.18);
+      background: transparent; color: var(--text-secondary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 600; cursor: pointer;
+      transition: all 0.18s;
+    }
+    .chip:hover { color: var(--text-primary); border-color: rgba(132,102,77,0.35); }
+    .chip.on {
+      background: var(--btn-primary); border-color: var(--btn-primary);
+      color: var(--btn-primary-text);
+    }
+    .chip.all.on {
+      background: var(--btn-accent); border-color: var(--btn-accent); color: #DAD9D0;
+    }
+
+    /* ===== MATERI ACCORDION ===== */
+    .section { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem 2.5rem; }
+    .section-hd { margin-bottom: 1.25rem; }
+    .section-ey {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.08em; font-weight: 600;
+      color: var(--btn-accent); margin-bottom: 0.35rem;
+    }
+    .section-ttl { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+
+    .accordion { display: flex; flex-direction: column; gap: 0.6rem; }
+    .acc-item {
+      background: var(--bg-surface);
+      border: 1px solid rgba(132,102,77,0.1);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.18s;
+    }
+    .acc-item.hidden { display: none; }
+    .acc-item:hover { border-color: rgba(132,102,77,0.2); }
+    .acc-item.done { border-color: rgba(94,135,132,0.2); }
+
+    .acc-head {
+      display: flex; align-items: center; gap: 0.875rem;
+      padding: 1.1rem 1.25rem; cursor: pointer;
+      user-select: none;
+    }
+    .acc-num {
+      min-width: 30px; height: 30px;
+      background: rgba(132,102,77,0.1);
+      border-radius: 8px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--primary-300);
+    }
+    .acc-item.done .acc-num {
+      background: rgba(94,135,132,0.15); color: var(--accent-400);
+    }
+    .acc-title {
+      flex: 1; font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--text-primary);
+    }
+    .acc-right { display: flex; align-items: center; gap: 0.75rem; }
+    .acc-check {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.68rem; color: var(--text-muted);
+      cursor: pointer; padding: 4px 8px;
+      border: 1px solid rgba(132,102,77,0.15);
+      border-radius: 6px; background: var(--bg-card);
+      transition: all 0.18s; white-space: nowrap;
+    }
+    .acc-check:hover { border-color: rgba(94,135,132,0.3); color: var(--accent-400); }
+    .acc-item.done .acc-check {
+      background: rgba(94,135,132,0.12);
+      border-color: rgba(94,135,132,0.25); color: var(--accent-400);
+    }
+    .acc-arrow {
+      color: var(--text-muted); transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .acc-item.open .acc-arrow { transform: rotate(180deg); }
+
+    .acc-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .acc-body-inner {
+      padding: 0 1.25rem 1.25rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 640px) {
+      .acc-body-inner { grid-template-columns: 1fr; }
+    }
+    .acc-focus {
+      background: var(--bg-card); border-radius: 9px; padding: 1rem;
+    }
+    .acc-focus-lbl {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .acc-focus p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; }
+    .acc-example {
+      background: rgba(94,135,132,0.07);
+      border-left: 3px solid var(--accent-600);
+      border-radius: 0 9px 9px 0; padding: 1rem;
+    }
+    .acc-example-lbl {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent-400); font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .acc-example p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; font-style: italic; }
+    .acc-example strong { color: var(--text-primary); font-style: normal; }
+
+    /* ===== KISI TABLE ===== */
+    #kisi { scroll-margin-top: 80px; }
+
+    .tbl-search-row {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+      margin-bottom: 1rem; align-items: center;
+    }
+    .tbl-search {
+      flex: 1; min-width: 220px;
+      position: relative;
+    }
+    .tbl-search svg {
+      position: absolute; left: 0.8rem; top: 50%;
+      transform: translateY(-50%); color: var(--text-muted);
+      pointer-events: none;
+    }
+    .tbl-search input {
+      width: 100%; padding: 0.6rem 0.9rem 0.6rem 2.4rem;
+      background: var(--bg-surface);
+      border: 1px solid rgba(132,102,77,0.15);
+      border-radius: 9px; color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.82rem;
+      outline: none; transition: border-color 0.18s;
+    }
+    .tbl-search input::placeholder { color: var(--text-muted); }
+    .tbl-search input:focus { border-color: rgba(94,135,132,0.4); }
+
+    .tbl-info { font-size: 0.75rem; color: var(--text-muted); }
+
+    .tbl-wrap {
+      background: var(--bg-surface);
+      border: 1px solid rgba(132,102,77,0.1);
+      border-radius: 14px; overflow: hidden;
+    }
+    .tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: var(--bg-card); }
+    th {
+      padding: 0.875rem 1rem; text-align: left;
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--text-muted);
+      font-weight: 600; white-space: nowrap;
+      border-bottom: 1px solid rgba(132,102,77,0.1);
+    }
+    td {
+      padding: 0.8rem 1rem;
+      font-size: 0.8rem; color: var(--text-secondary);
+      border-bottom: 1px solid rgba(132,102,77,0.06);
+      vertical-align: top; line-height: 1.55;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(132,102,77,0.03); }
+    tr.hidden-row { display: none; }
+
+    .td-no {
+      color: var(--text-muted); font-weight: 600;
+      text-align: center; font-size: 0.78rem;
+    }
+    .td-materi { color: var(--primary-300); font-weight: 600; }
+    .level-badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 5px; font-size: 0.63rem; font-weight: 700;
+      white-space: nowrap;
+    }
+    .level-c2 { background: rgba(137,174,176,0.1); color: var(--accent-400); }
+    .level-c3 { background: rgba(132,102,77,0.1); color: var(--primary-300); }
+    .level-c4 { background: rgba(90,45,26,0.3); color: #E8A070; }
+    .bentuk-badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 5px; font-size: 0.63rem; font-weight: 600;
+      background: rgba(63,67,60,0.8); color: var(--text-secondary);
+      border: 1px solid rgba(132,102,77,0.12); white-space: nowrap;
+    }
+    .bobot-val { font-weight: 700; color: var(--text-primary); text-align: center; }
+
+    .no-results {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--text-muted);
+    }
+    .no-results svg { margin-bottom: 0.75rem; opacity: 0.35; }
+    .no-results p { font-size: 0.875rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid rgba(132,102,77,0.1);
+      padding: 1.5rem; text-align: center;
+      color: var(--text-muted); font-size: 0.75rem; margin-top: 2rem;
+    }
+
+    /* ===== POMODORO FAB ===== */
+    #pomo-fab {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300;
+    }
+    .pomo-toggle {
+      width: 54px; height: 54px;
+      background: var(--btn-primary); border: none; border-radius: 50%;
+      cursor: pointer; color: var(--btn-primary-text);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.45); transition: all 0.2s;
+    }
+    .pomo-toggle:hover { background: var(--btn-primary-hover); transform: scale(1.06); }
+    .pomo-toggle.ticking { background: var(--btn-accent); }
+    .pomo-panel {
+      position: absolute; bottom: 66px; right: 0; width: 268px;
+      background: var(--bg-surface); border: 1px solid rgba(132,102,77,0.18);
+      border-radius: 16px; padding: 1.25rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+      opacity: 0; pointer-events: none;
+      transform: translateY(8px) scale(0.97);
+      transition: all 0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+    .pomo-panel.show { opacity: 1; pointer-events: all; transform: translateY(0) scale(1); }
+    .pomo-hd {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--text-muted); font-weight: 600; margin-bottom: 0.8rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .pomo-close-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); padding: 0; transition: color 0.15s;
+    }
+    .pomo-close-btn:hover { color: var(--text-primary); }
+    .pomo-tabs {
+      display: flex; gap: 3px; background: var(--bg-card);
+      border-radius: 8px; padding: 3px; margin-bottom: 1rem;
+    }
+    .pomo-tab {
+      flex: 1; padding: 5px 2px; background: transparent; border: none;
+      border-radius: 6px; color: var(--text-muted);
+      font-size: 0.68rem; font-weight: 600; cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.18s;
+    }
+    .pomo-tab.on { background: var(--btn-primary); color: var(--btn-primary-text); }
+    .pomo-center { text-align: center; margin-bottom: 0.875rem; }
+    .pomo-clock {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 700; color: var(--text-primary);
+      letter-spacing: -0.02em; line-height: 1;
+    }
+    .pomo-sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 4px; }
+    .pomo-bar-wrap {
+      height: 3px; background: var(--bg-card);
+      border-radius: 100px; overflow: hidden; margin-bottom: 0.875rem;
+    }
+    .pomo-bar { height: 100%; border-radius: 100px; background: var(--btn-accent); transition: width 1s linear; }
+    .pomo-btns { display: flex; gap: 7px; }
+    .pomo-btn {
+      flex: 1; padding: 8px; background: var(--bg-card);
+      border: 1px solid rgba(132,102,77,0.15); border-radius: 8px;
+      color: var(--text-primary); font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.18s;
+    }
+    .pomo-btn:hover { background: var(--bg-hover); }
+    .pomo-btn.go { background: var(--btn-accent); border-color: var(--btn-accent); color: #DAD9D0; }
+    .pomo-btn.go:hover { background: var(--btn-accent-hover); }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div id="scroll-prog"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-brand">
+      <img src="./assets/Luocha.png" alt="Logo">
+      <span>Luo-Learn</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./demo.html" class="active">Materi</a></li>
+      <li><a href="#">Soal-Soal</a></li>
+      <li><a href="./about.html">About</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+  <div class="nav-mobile" id="nav-mobile">
+    <ul>
+      <li><a href="./index.html">🏠 Home</a></li>
+      <li><a href="./demo.html">📚 Materi &amp; Kisi-Kisi</a></li>
+      <li><a href="#">✏️ Soal-Soal</a></li>
+      <li><a href="./about.html">👤 About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== PAGE HEADER ===== -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="./index.html">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <span style="color:var(--text-primary)">Materi &amp; Kisi-Kisi</span>
+  </div>
+  <h1>Materi &amp; Kisi-Kisi PSAJ</h1>
+  <p>Bahasa Indonesia Kelas IX · Tahun Ajaran 2025–2026</p>
+
+  <div class="prog-overview">
+    <span class="prog-label">Progress belajar kamu:</span>
+    <div class="prog-bar-wrap">
+      <div class="prog-bar-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+    <span class="prog-count" id="prog-count">0 / 7 topik</span>
+  </div>
+</div>
+
+<!-- ===== SEARCH + FILTER ===== -->
+<div class="search-bar-section">
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" id="materi-search" type="text"
+      placeholder="Cari topik materi... (contoh: cerpen, puisi, prosedur)">
+  </div>
+  <div class="filter-chips" id="filter-chips">
+    <button class="chip all on" data-filter="all">Semua</button>
+    <button class="chip" data-filter="eksposisi">Eksposisi</button>
+    <button class="chip" data-filter="prosedur">Prosedur</button>
+    <button class="chip" data-filter="cerpen">Cerpen</button>
+    <button class="chip" data-filter="tanggapan">Tanggapan</button>
+    <button class="chip" data-filter="puisi">Puisi</button>
+    <button class="chip" data-filter="berita">Berita</button>
+    <button class="chip" data-filter="surat">Surat &amp; Lainnya</button>
+  </div>
+</div>
+
+<!-- ===== MATERI ACCORDION ===== -->
+<div class="section">
+  <div class="section-hd">
+    <div class="section-ey">Detail Materi</div>
+    <h2 class="section-ttl">Pelajari Tiap Topik</h2>
+  </div>
+
+  <div class="accordion" id="accordion">
+
+    <!-- 1. Teks Eksposisi & Argumentasi -->
+    <div class="acc-item" data-topic="eksposisi" data-id="1">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">1</div>
+        <div class="acc-title">Teks Eksposisi &amp; Argumentasi</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Menentukan gagasan utama, menganalisis hubungan informasi (pertentangan), menemukan kalimat kompleks, mengidentifikasi kata modalitas, dan pola pengembangan paragraf.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Teks</div>
+            <p><strong>Sampah plastik adalah ancaman nyata bagi ekosistem laut</strong> (Gagasan Utama). <em>Oleh karena itu</em>, kita harus mengurangi penggunaannya. Pemerintah <em>sebaiknya</em> (Kata Modalitas) segera bertindak.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Teks Prosedur -->
+    <div class="acc-item" data-topic="prosedur" data-id="2">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">2</div>
+        <div class="acc-title">Teks Prosedur</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Menganalisis urutan langkah yang benar, melengkapi teks prosedur yang rumpang, dan menentukan tindakan sesuai informasi teks.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Soal</div>
+            <p>Susunlah urutan acak berikut! (1) Tuang air panas. (2) Masukkan bubuk kopi. (3) Aduk hingga rata.<br><strong>Jawaban: (2) → (1) → (3)</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Cerpen & Cerita Fiksi -->
+    <div class="acc-item" data-topic="cerpen" data-id="3">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">3</div>
+        <div class="acc-title">Cerpen &amp; Cerita Fiksi</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Menentukan latar waktu/tempat, menganalisis hubungan sebab-akibat alur, menemukan pesan/nilai moral, menentukan struktur cerita (orientasi, konflik, klimaks), dan mengidentifikasi tokoh serta karakter.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Latar Waktu</div>
+            <p>"Sinar mentari senja kemerahan menyapu wajah Andi yang kelelahan." — <strong>Latar: Sore hari.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Teks Tanggapan & Diskusi -->
+    <div class="acc-item" data-topic="tanggapan" data-id="4">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">4</div>
+        <div class="acc-title">Teks Tanggapan &amp; Diskusi</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Mengidentifikasi pendapat utama, menentukan sikap pro (mendukung) dan kontra (menentang), menyusun simpulan isi teks, dan membedakan argumen mendukung vs menentang.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Argumen Kontra</div>
+            <p>"Saya kurang setuju dengan aturan larangan membawa HP ke sekolah karena gawai sangat dibutuhkan untuk riset tugas mendadak."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Puisi & Gaya Bahasa -->
+    <div class="acc-item" data-topic="puisi" data-id="5">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">5</div>
+        <div class="acc-title">Puisi &amp; Gaya Bahasa</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Menafsirkan makna larik puisi, menentukan majas yang dominan, mencari kosakata bersuasana tertentu, dan menentukan tanggapan yang sesuai isi puisi.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Majas Personifikasi</div>
+            <p>"Angin malam berbisik pelan di telingaku, membawa rindu yang tak tersampaikan." — <strong>Majas: Personifikasi</strong> (angin dianggap makhluk hidup).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Teks Berita & Eksplanasi -->
+    <div class="acc-item" data-topic="berita" data-id="6">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">6</div>
+        <div class="acc-title">Teks Berita &amp; Teks Eksplanasi</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p>Memahami struktur berita (teras, tubuh, ekor), menentukan kalimat pembuka, membandingkan dua teks berita, memahami penyebab fenomena dalam teks eksplanasi.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Kalimat Pembuka (Lead)</div>
+            <p>"Telah terjadi banjir bandang di Desa Suka Maju pada Rabu malam akibat curah hujan yang sangat tinggi." — <strong>Kalimat teras berita (lead).</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Slogan, Surat, Ulasan, Pidato -->
+    <div class="acc-item" data-topic="surat" data-id="7">
+      <div class="acc-head" onclick="toggleAcc(this.parentElement)">
+        <div class="acc-num">7</div>
+        <div class="acc-title">Slogan, Surat Resmi, Teks Ulasan &amp; Pidato</div>
+        <div class="acc-right">
+          <div class="acc-check" onclick="event.stopPropagation();toggleDone(this.closest('.acc-item'))">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Selesai</span>
+          </div>
+          <svg class="acc-arrow" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <div class="acc-focus">
+            <div class="acc-focus-lbl">Fokus Materi</div>
+            <p><strong>Slogan:</strong> Menentukan slogan sesuai ilustrasi.<br><strong>Surat Resmi:</strong> Menentukan bagian isi surat undangan.<br><strong>Teks Ulasan:</strong> Menonjolkan keunggulan karya.<br><strong>Teks Pidato:</strong> Mengidentifikasi gagasan pokok.</p>
+          </div>
+          <div class="acc-example">
+            <div class="acc-example-lbl">Contoh Slogan</div>
+            <p>"Satu Pohon untuk Jutaan Napas" — <strong>Contoh slogan kampanye lingkungan hidup</strong> yang padat dan berkesan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /accordion -->
+  <div id="no-materi" style="display:none" class="no-results">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <p>Topik tidak ditemukan. Coba kata kunci lain.</p>
+  </div>
+</div>
+
+<!-- ===== KISI-KISI TABLE ===== -->
+<div class="section" id="kisi">
+  <div class="section-hd">
+    <div class="section-ey">Kisi-Kisi Resmi</div>
+    <h2 class="section-ttl">Tabel Indikator Soal PSAJ</h2>
+  </div>
+
+  <div class="tbl-search-row">
+    <div class="tbl-search">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="tbl-search-input" placeholder="Cari indikator soal, materi, atau level kognitif...">
+    </div>
+    <span class="tbl-info" id="tbl-info">50 indikator</span>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:44px">No.</th>
+            <th style="min-width:190px">Tujuan Pembelajaran</th>
+            <th style="min-width:170px">Indikator Pencapaian</th>
+            <th style="min-width:130px">Materi</th>
+            <th style="min-width:230px">Indikator Soal</th>
+            <th style="min-width:110px">Level Kognitif</th>
+            <th style="min-width:100px">Bentuk Soal</th>
+            <th style="width:60px">Bobot</th>
+          </tr>
+        </thead>
+        <tbody id="kisi-body">
+          <!-- Rendered by JS -->
+        </tbody>
+      </table>
+      <div id="tbl-no-results" style="display:none" class="no-results">
+        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <p>Tidak ada hasil yang cocok.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025–2026 Luo-Learn · Bahasa Indonesia Kelas IX</p>
+</footer>
+
+<!-- Pomodoro Widget (same as index) -->
+<div id="pomo-fab">
+  <div class="pomo-panel" id="pomo-panel">
+    <div class="pomo-hd">
+      <span>⏱ Timer Belajar</span>
+      <button class="pomo-close-btn" onclick="closePomoPanel()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="pomo-tabs">
+      <button class="pomo-tab on" data-mode="work" onclick="setMode(this)">Fokus</button>
+      <button class="pomo-tab" data-mode="short" onclick="setMode(this)">Istirahat</button>
+      <button class="pomo-tab" data-mode="long" onclick="setMode(this)">Panjang</button>
+    </div>
+    <div class="pomo-center">
+      <div class="pomo-clock" id="pomo-clock">25:00</div>
+      <div class="pomo-sub" id="pomo-sub">Sesi ke-1 · Fokus Belajar</div>
+    </div>
+    <div class="pomo-bar-wrap">
+      <div class="pomo-bar" id="pomo-bar" style="width:100%"></div>
+    </div>
+    <div class="pomo-btns">
+      <button class="pomo-btn go" id="pomo-go" onclick="toggleTimer()">▶ Mulai</button>
+      <button class="pomo-btn" onclick="resetTimer()">↺ Reset</button>
+    </div>
+  </div>
+  <button class="pomo-toggle" id="pomo-fab-btn" onclick="togglePomoPanel()" title="Timer Belajar">
+    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  </button>
+</div>
+
+<script>
+// ======= Hamburger =======
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('nav-mobile').classList.toggle('open');
+});
+
+// ======= Scroll Progress =======
+window.addEventListener('scroll', function() {
+  const el = document.documentElement;
+  const scrolled = (el.scrollTop || document.body.scrollTop);
+  const total = el.scrollHeight - el.clientHeight;
+  document.getElementById('scroll-prog').style.width = (scrolled / total * 100) + '%';
+});
+
+// ======= Progress Tracker =======
+const TOTAL = 7;
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem('luolearn_progress') || '{}'); } catch(e) { return {}; }
+}
+function saveProgress(p) {
+  try { localStorage.setItem('luolearn_progress', JSON.stringify(p)); } catch(e) {}
+}
+function updateProgressBar() {
+  const p = getProgress();
+  const done = Object.values(p).filter(Boolean).length;
+  const pct = (done / TOTAL * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-count').textContent = done + ' / ' + TOTAL + ' topik';
+}
+function toggleDone(item) {
+  const id = item.dataset.id;
+  const p = getProgress();
+  p[id] = !p[id];
+  saveProgress(p);
+  if (p[id]) { item.classList.add('done'); } else { item.classList.remove('done'); }
+  updateProgressBar();
+}
+// Apply saved progress on load
+(function() {
+  const p = getProgress();
+  document.querySelectorAll('.acc-item').forEach(item => {
+    if (p[item.dataset.id]) item.classList.add('done');
+  });
+  updateProgressBar();
+})();
+
+// ======= Accordion =======
+function toggleAcc(item) {
+  const body = item.querySelector('.acc-body');
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.acc-item.open').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.acc-body').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+// ======= Materi Search + Filter =======
+const materiFuncs = {
+  search: '',
+  filter: 'all'
+};
+
+document.getElementById('materi-search').addEventListener('input', function() {
+  materiFuncs.search = this.value.toLowerCase().trim();
+  applyMaterFilter();
+});
+
+document.querySelectorAll('#filter-chips .chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('#filter-chips .chip').forEach(c => c.classList.remove('on'));
+    this.classList.add('on');
+    materiFuncs.filter = this.dataset.filter;
+    applyMaterFilter();
+  });
+});
+
+function applyMaterFilter() {
+  const items = document.querySelectorAll('.acc-item');
+  let vis = 0;
+  items.forEach(item => {
+    const topic = item.dataset.topic;
+    const text = item.textContent.toLowerCase();
+    const matchFilter = materiFuncs.filter === 'all' || topic === materiFuncs.filter;
+    const matchSearch = materiFuncs.search === '' || text.includes(materiFuncs.search);
+    if (matchFilter && matchSearch) {
+      item.classList.remove('hidden'); vis++;
+    } else {
+      item.classList.add('hidden');
+      // Close if hidden
+      item.classList.remove('open');
+      item.querySelector('.acc-body').style.maxHeight = '0';
+    }
+  });
+  document.getElementById('no-materi').style.display = vis === 0 ? 'block' : 'none';
+}
+
+// ======= Kisi-Kisi Data + Render =======
+const kisiData = [
+  { no:1, tujuan:"Murid mampu menganalisis informasi dalam teks bacaan.", ipk:"Menganalisis hubungan antar informasi dalam teks.", materi:"Teks eksposisi", soal:"Disajikan teks eksposisi, murid menentukan hubungan antara data dan pernyataan penulis.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:2, tujuan:"Murid mampu menentukan gagasan utama paragraf.", ipk:"Mengidentifikasi gagasan utama paragraf.", materi:"Paragraf eksposisi", soal:"Disajikan paragraf, murid menentukan gagasan utama.", level:"C2 Memahami", bentuk:"PG", bobot:"1,5" },
+  { no:3, tujuan:"Murid mampu menyimpulkan isi teks.", ipk:"Menarik simpulan dari informasi yang disajikan.", materi:"Teks deskripsi/informasi", soal:"Disajikan teks tentang bakau, murid menentukan simpulan isi teks.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:4, tujuan:"Murid mampu membandingkan isi dua teks.", ipk:"Menganalisis perbedaan fokus informasi pada dua teks.", materi:"Perbandingan teks", soal:"Disajikan dua teks, murid menentukan perbedaan fokus informasi.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:5, tujuan:"Murid mampu memperbaiki kalimat tidak efektif.", ipk:"Mengidentifikasi dan memperbaiki kalimat tidak efektif.", materi:"Kalimat efektif", soal:"Disajikan kalimat tidak efektif, murid memilih perbaikan yang tepat.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:6, tujuan:"Murid mampu memahami struktur teks prosedur.", ipk:"Menganalisis urutan langkah dalam teks prosedur.", materi:"Teks prosedur", soal:"Disajikan paragraf acak, murid menentukan urutan yang benar.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:7, tujuan:"Murid mampu melengkapi teks surat resmi.", ipk:"Menentukan bagian isi surat resmi.", materi:"Surat resmi", soal:"Disajikan surat undangan, murid menentukan kalimat pelengkap.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:8, tujuan:"Murid mampu menentukan slogan sesuai konteks.", ipk:"Menganalisis kesesuaian slogan dengan tujuan komunikasi.", materi:"Slogan", soal:"Disajikan ilustrasi masalah, murid menentukan slogan yang sesuai.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:9, tujuan:"Murid mampu mengidentifikasi unsur intrinsik cerpen.", ipk:"Menentukan latar dalam cerita.", materi:"Cerpen", soal:"Disajikan cerpen, murid menentukan latar waktu.", level:"C2 Memahami", bentuk:"PG", bobot:"1,5" },
+  { no:10, tujuan:"Murid mampu menganalisis hubungan sebab-akibat dalam cerita.", ipk:"Menentukan hubungan sebab akibat dalam alur cerita.", materi:"Cerpen", soal:"Disajikan cerpen, murid menentukan hubungan sebab-akibat.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:11, tujuan:"Murid mampu mengaitkan isi cerita dengan kehidupan nyata.", ipk:"Menafsirkan pesan cerita dalam kehidupan.", materi:"Cerpen", soal:"Disajikan cerpen, murid menentukan tindakan yang sesuai.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:12, tujuan:"Murid mampu menemukan nilai moral cerita.", ipk:"Mengidentifikasi nilai moral dalam cerita.", materi:"Cerita fiksi", soal:"Disajikan cerita, murid menentukan nilai moral.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:13, tujuan:"Murid mampu menafsirkan makna puisi.", ipk:"Menafsirkan makna larik puisi.", materi:"Makna Puisi", soal:"Disajikan puisi, murid menentukan makna larik.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:14, tujuan:"Murid mampu mengidentifikasi majas.", ipk:"Menentukan majas yang dominan dalam puisi.", materi:"Gaya Bahasa dalam Puisi", soal:"Disajikan puisi, murid menentukan jenis majas.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:15, tujuan:"Murid mampu merangkum isi pidato.", ipk:"Mengidentifikasi gagasan pokok pidato.", materi:"Teks pidato", soal:"Disajikan teks pidato, murid menentukan ringkasan isi.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:16, tujuan:"Murid mampu menentukan pendapat utama.", ipk:"Mengidentifikasi gagasan utama dalam teks tanggapan.", materi:"Teks tanggapan", soal:"Disajikan teks tanggapan, murid menentukan pendapat utama.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:17, tujuan:"Murid mampu memahami struktur teks diskusi.", ipk:"Mengidentifikasi bagian argumen menentang.", materi:"Teks diskusi/argumentasi", soal:"Disajikan teks diskusi, murid menentukan paragraf argumen kontra.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:18, tujuan:"Murid mampu menentukan sikap terhadap teks.", ipk:"Menentukan sikap pro terhadap isi teks.", materi:"Teks tanggapan", soal:"Disajikan teks, murid menentukan tanggapan pro.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:19, tujuan:"Murid mampu memberikan tanggapan terhadap teks.", ipk:"Menentukan tanggapan kontra.", materi:"Teks tanggapan", soal:"Disajikan teks, murid menentukan tanggapan kontra.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:20, tujuan:"Murid mampu menyimpulkan isi teks.", ipk:"Menyusun simpulan isi teks.", materi:"Teks tanggapan", soal:"Disajikan paragraf tanggapan, murid menentukan simpulan.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:21, tujuan:"Murid mampu membedakan jenis teks.", ipk:"Menganalisis perbedaan struktur dan tujuan teks.", materi:"Eksposisi dan eksplanasi", soal:"Disajikan dua teks, murid menentukan perbedaan jenis teks.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:22, tujuan:"Murid mampu melengkapi teks tanggapan.", ipk:"Menentukan kalimat deskriptif yang sesuai.", materi:"Teks deskripsi/tanggapan", soal:"Disajikan teks tanggapan, murid memilih kalimat pelengkap.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:23, tujuan:"Murid mampu mengidentifikasi unsur kebahasaan.", ipk:"Menentukan kata modalitas dalam teks.", materi:"Teks eksposisi", soal:"Disajikan teks eksposisi, murid menentukan kata modalitas.", level:"C2 Memahami", bentuk:"PG", bobot:"1,5" },
+  { no:24, tujuan:"Murid mampu mengidentifikasi kalimat kompleks.", ipk:"Menentukan kalimat kompleks.", materi:"Unsur kebahasaan teks eksposisi", soal:"Disajikan paragraf eksposisi, murid menentukan kalimat kompleks.", level:"C3 Menerapkan", bentuk:"PG", bobot:"1,5" },
+  { no:25, tujuan:"Murid mampu melanjutkan paragraf deskripsi.", ipk:"Menentukan kalimat deskriptif lanjutan.", materi:"Teks deskripsi", soal:"Disajikan paragraf, murid menentukan kalimat yang tepat.", level:"C4 Analisis", bentuk:"PG", bobot:"1,5" },
+  { no:26, tujuan:"Murid mampu memahami gagasan utama.", ipk:"Mengidentifikasi kalimat utama dalam paragraf.", materi:"Teks eksposisi", soal:"Disajikan teks eksposisi, murid menentukan kalimat utama.", level:"C2 Memahami", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:27, tujuan:"Murid mampu menganalisis gagasan utama teks.", ipk:"Menentukan gagasan utama teks.", materi:"Teks eksposisi", soal:"Disajikan teks eksposisi, murid menentukan gagasan utama teks ekstrakurikuler.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:28, tujuan:"Murid mampu menganalisis hubungan makna dalam teks.", ipk:"Menentukan hubungan pertentangan dalam kalimat.", materi:"Teks eksposisi", soal:"Disajikan paragraf eksposisi, murid menentukan kalimat yang menunjukkan pertentangan.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:29, tujuan:"Murid mampu memahami informasi teks deskripsi.", ipk:"Mengidentifikasi informasi lokasi.", materi:"Teks deskripsi", soal:"Disajikan teks deskripsi, murid menentukan kosakata yang menunjukkan letak tempat.", level:"C2 Memahami", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:30, tujuan:"Murid mampu memahami informasi faktual.", ipk:"Mengidentifikasi penyebab fenomena dalam teks.", materi:"Teks eksplanasi", soal:"Disajikan teks eksplanasi, murid menentukan penyebab peristiwa.", level:"C3 Menerapkan", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:31, tujuan:"Murid mampu memahami isi teks argumentasi.", ipk:"Menentukan informasi penting dalam teks.", materi:"Teks argumentasi", soal:"Disajikan teks argumentasi, murid menentukan pernyataan yang sesuai isi teks.", level:"C3 Menerapkan", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:32, tujuan:"Murid mampu membuat slogan sesuai konteks.", ipk:"Menentukan slogan yang tepat.", materi:"Slogan", soal:"Disajikan ilustrasi, murid menentukan slogan kampanye lingkungan.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:33, tujuan:"Murid mampu menganalisis unsur intrinsik cerpen.", ipk:"Menentukan tokoh dan karakter.", materi:"Cerpen", soal:"Disajikan teks cerpen, murid menentukan tokoh dalam cerita.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:34, tujuan:"Murid mampu menemukan amanat dalam cerita.", ipk:"Menentukan amanat cerita.", materi:"Cerpen", soal:"Disajikan teks cerpen, murid menentukan pesan moral.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:35, tujuan:"Murid mampu menganalisis isi teks ulasan.", ipk:"Menentukan keunggulan karya.", materi:"Teks ulasan", soal:"Disajikan teks ulasan, murid menentukan keunggulan buku.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:36, tujuan:"Murid mampu memahami makna kata dalam puisi.", ipk:"Menentukan kosakata yang menggambarkan suasana.", materi:"Puisi", soal:"Disajikan teks puisi, murid menentukan kosakata yang menggambarkan kerusakan alam.", level:"C3 Menerapkan", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:37, tujuan:"Murid mampu memahami struktur teks prosedur.", ipk:"Menentukan langkah-langkah prosedur.", materi:"Teks prosedur", soal:"Disajikan teks prosedur, murid menentukan urutan langkah yang benar.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:38, tujuan:"Murid mampu melengkapi teks prosedur.", ipk:"Menentukan kalimat yang tepat dalam prosedur.", materi:"Teks prosedur", soal:"Disajikan teks prosedur, murid menentukan kalimat pelengkap.", level:"C3 Menerapkan", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:39, tujuan:"Murid mampu menulis teks berita.", ipk:"Menentukan kalimat pembuka berita.", materi:"Teks berita", soal:"Disajikan teks berita, murid menentukan kalimat pembuka dari data peristiwa.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:40, tujuan:"Murid mampu memahami struktur teks berita.", ipk:"Mengidentifikasi struktur berita.", materi:"Teks berita", soal:"Disajikan teks berita, murid menentukan bagian teras, tubuh, dan ekor.", level:"C4 Analisis", bentuk:"PG Kompleks", bobot:"2,5" },
+  { no:41, tujuan:"Murid mampu memahami isi teks eksplanasi.", ipk:"Mengidentifikasi informasi pendukung.", materi:"Teks eksplanasi lingkungan", soal:"Disajikan teks eksplanasi, murid menentukan pernyataan yang mendukung gagasan teks.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:42, tujuan:"Murid mampu menganalisis struktur cerpen.", ipk:"Menentukan bagian struktur cerpen.", materi:"Cerpen", soal:"Disajikan teks cerpen, murid menentukan orientasi, konflik, dan klimaks.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:43, tujuan:"Murid mampu menafsirkan pesan moral cerita.", ipk:"Menentukan amanat cerita.", materi:"Cerita fiksi", soal:"Disajikan kutipan teks cerpen, murid menentukan pesan moral.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:44, tujuan:"Murid mampu menafsirkan makna puisi.", ipk:"Mengidentifikasi makna dan pesan puisi.", materi:"Puisi", soal:"Disajikan teks puisi, murid menentukan tanggapan yang sesuai.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:45, tujuan:"Murid mampu memahami informasi teks eksposisi.", ipk:"Mengidentifikasi penyebab suatu fenomena.", materi:"Teks eksposisi lingkungan", soal:"Disajikan teks eksposisi, murid menentukan pernyataan yang mendukung penyebab masalah sampah.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:46, tujuan:"Murid mampu memahami teks prosedur.", ipk:"Menentukan tindakan sesuai informasi teks.", materi:"Teks prosedur kesehatan", soal:"Disajikan teks prosedur, murid menentukan tindakan pencegahan bau mulut.", level:"C3 Aplikasi", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:47, tujuan:"Murid mampu membandingkan dua teks berita.", ipk:"Menganalisis perbedaan unsur kebahasaan.", materi:"Perbandingan teks berita", soal:"Disajikan dua teks berita, murid menentukan perbandingan konjungsi dan kalimat.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:48, tujuan:"Murid mampu menganalisis struktur teks deskripsi.", ipk:"Menentukan paragraf penutup yang tepat.", materi:"Teks deskripsi", soal:"Disajikan teks deskripsi, murid menentukan paragraf penutup yang sesuai.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:49, tujuan:"Murid mampu menganalisis pola pengembangan paragraf.", ipk:"Mengidentifikasi pola pengembangan paragraf.", materi:"Teks eksposisi", soal:"Disajikan teks eksposisi, murid menentukan pola pengembangan paragraf.", level:"C4 Analisis", bentuk:"PG Kategori", bobot:"2,5" },
+  { no:50, tujuan:"Murid mampu memahami makna istilah.", ipk:"Menentukan kesesuaian penggunaan istilah.", materi:"Kaidah kebahasaan", soal:"Disajikan paragraf, murid menentukan kesesuaian makna istilah dalam kalimat.", level:"C3 Aplikasi", bentuk:"PG Kategori", bobot:"2,5" }
+];
+
+function levelClass(l) {
+  if (l.includes('C2')) return 'level-c2';
+  if (l.includes('C3')) return 'level-c3';
+  return 'level-c4';
+}
+
+const tbody = document.getElementById('kisi-body');
+kisiData.forEach(d => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td class="td-no">${d.no}</td>
+    <td>${d.tujuan}</td>
+    <td>${d.ipk}</td>
+    <td class="td-materi">${d.materi}</td>
+    <td>${d.soal}</td>
+    <td><span class="level-badge ${levelClass(d.level)}">${d.level}</span></td>
+    <td><span class="bentuk-badge">${d.bentuk}</span></td>
+    <td class="bobot-val">${d.bobot}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// Table search
+const tblInput = document.getElementById('tbl-search-input');
+tblInput.addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  const rows = tbody.querySelectorAll('tr');
+  let vis = 0;
+  rows.forEach(row => {
+    if (row.textContent.toLowerCase().includes(q)) {
+      row.classList.remove('hidden-row'); vis++;
+    } else {
+      row.classList.add('hidden-row');
+    }
+  });
+  document.getElementById('tbl-info').textContent = vis + ' indikator';
+  document.getElementById('tbl-no-results').style.display = vis === 0 ? 'flex' : 'none';
+  document.getElementById('tbl-no-results').style.flexDirection = vis === 0 ? 'column' : '';
+  document.getElementById('tbl-no-results').style.alignItems = vis === 0 ? 'center' : '';
+});
+
+// ======= Pomodoro =======
+const MODES = { work: 25*60, short: 5*60, long: 15*60 };
+const LABELS = { work: 'Fokus Belajar', short: 'Istirahat Pendek', long: 'Istirahat Panjang' };
+let curMode='work', total=MODES.work, left=MODES.work;
+let running=false, tick=null, sessions=1;
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+function render(){
+  document.getElementById('pomo-clock').textContent=fmt(left);
+  document.getElementById('pomo-sub').textContent='Sesi ke-'+sessions+' · '+LABELS[curMode];
+  document.getElementById('pomo-bar').style.width=(left/total*100)+'%';
+}
+function setMode(btn){
+  if(running)resetTimer();
+  document.querySelectorAll('.pomo-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); curMode=btn.dataset.mode; total=left=MODES[curMode];
+  document.getElementById('pomo-bar').style.background=curMode==='work'?'var(--btn-accent)':'var(--btn-primary)';
+  render();
+}
+function toggleTimer(){
+  if(running){
+    running=false;clearInterval(tick);
+    document.getElementById('pomo-go').textContent='▶ Lanjut';
+    document.getElementById('pomo-fab-btn').classList.remove('ticking');
+  } else {
+    running=true;
+    document.getElementById('pomo-go').textContent='⏸ Jeda';
+    document.getElementById('pomo-fab-btn').classList.add('ticking');
+    tick=setInterval(()=>{
+      if(left<=0){
+        clearInterval(tick);running=false;
+        document.getElementById('pomo-go').textContent='▶ Mulai';
+        document.getElementById('pomo-fab-btn').classList.remove('ticking');
+        if(curMode==='work')sessions++;
+        openPomoPanel();
+        alert(curMode==='work'?'✅ Sesi fokus selesai! Saatnya istirahat.':'📚 Istirahat selesai! Ayo kembali belajar.');
+        resetTimer();return;
+      }
+      left--;render();
+    },1000);
+  }
+}
+function resetTimer(){clearInterval(tick);running=false;left=total;document.getElementById('pomo-go').textContent='▶ Mulai';document.getElementById('pomo-fab-btn').classList.remove('ticking');render();}
+function togglePomoPanel(){document.getElementById('pomo-panel').classList.toggle('show');}
+function openPomoPanel(){document.getElementById('pomo-panel').classList.add('show');}
+function closePomoPanel(){document.getElementById('pomo-panel').classList.remove('show');}
+render();
+</script>
+</body>
+</html>
