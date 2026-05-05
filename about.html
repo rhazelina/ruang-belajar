@@ -1,436 +1,282 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes viewport-fit=cover" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
-    <title>Luo-Learn • Tentang Guru | Honkai Resonance</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tentang Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --surface: rgba(255, 255, 255, 0.88);
+      --line: rgba(53, 65, 54, 0.12);
+      --text: #213126;
+      --muted: #5c6e60;
+      --accent: #2f6e62;
+      --accent-strong: #1f5148;
+      --accent-soft: #dfe9e3;
+      --shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(117, 154, 138, 0.18), transparent 26%),
+        linear-gradient(180deg, #f9f6f0 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(243, 239, 230, 0.9);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      padding: 8px;
+      background: linear-gradient(180deg, #ffffff, #eef4ef);
+      border: 1px solid rgba(47, 110, 98, 0.16);
+      box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
+    }
+
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .mobile-nav[data-open="true"] { display: grid; }
+
+    .page-shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    .page-intro,
+    .content-card,
+    .highlight-card {
+      background: var(--surface);
+      border: 1px solid rgba(53, 65, 54, 0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-intro { padding: clamp(26px, 4vw, 38px); margin-bottom: 24px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2 { font-family: "Literata", serif; letter-spacing: -0.03em; }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.05;
+      max-width: 12ch;
+      margin-bottom: 16px;
+    }
+
+    p, li { color: var(--muted); line-height: 1.8; }
+    .intro-copy { max-width: 66ch; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .content-card,
+    .highlight-card { padding: 24px; }
+
+    .content-card h2,
+    .highlight-card h2 { font-size: 1.4rem; margin-bottom: 12px; }
+
+    .highlight-card ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .site-footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding-bottom: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .content-grid { grid-template-columns: 1fr; }
+      h1 { max-width: none; }
+    }
+
+    @media (max-width: 640px) {
+      .site-shell, .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+        width: min(100% - 24px, 1120px);
       }
-
-      body {
-        background: radial-gradient(circle at 15% 25%, #0F4C4F 0%, #0F1A13 55%, #000000 100%);
-        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-        min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
-            max-width: 100%;
-
+      .page-shell { padding: 28px 0 56px; }
+      .page-intro, .content-card, .highlight-card {
+        border-radius: 24px;
+        padding: 22px;
       }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
 
-      /* ===== HONKAI STARFALL PARTICLES ===== */
-      @keyframes floatStarUp {
-        0% { transform: translateY(0px) translateX(0px) scale(0.4); opacity: 0; }
-        15% { opacity: 0.7; }
-        70% { opacity: 0.5; }
-        100% { transform: translateY(-110px) translateX(25px) scale(1); opacity: 0; }
-      }
+  <main class="page-shell">
+    <section class="page-intro">
+      <span class="eyebrow">Tentang Program</span>
+      <h1>Tentang Luo-Learn</h1>
+      <p class="intro-copy">
+        Luo-Learn adalah prototype mini-site belajar yang disusun untuk membantu siswa SMP
+        membaca materi Informatika dengan lebih tenang, lebih terarah, dan lebih mudah dipahami
+        di layar HP maupun desktop.
+      </p>
+    </section>
 
-      .cosmic-dust {
-        position: fixed;
-        pointer-events: none;
-        background: radial-gradient(circle, #DDC6AD, #5E8784);
-        border-radius: 50%;
-        filter: blur(1.2px);
-        z-index: 0;
-      }
+    <section class="content-grid">
+      <article class="content-card">
+        <h2>Kenapa program ini dibuat?</h2>
+        <p>Karena banyak siswa lebih mudah memahami materi saat tampilannya sederhana, bahasanya jelas, dan urutan belajarnya tidak membingungkan.</p>
+      </article>
+      <article class="content-card">
+        <h2>Apa yang bisa dipelajari?</h2>
+        <p>Siswa bisa mulai dari berpikir komputasional, algoritma, logika dasar, sistem bilangan, sampai pengenalan AI untuk SMP.</p>
+      </article>
+      <article class="content-card">
+        <h2>Pendekatan yang dipakai</h2>
+        <p>Materi ditulis ringkas, hardcoded, dan dibuat seperti buku saku atau catatan belajar, bukan seperti percakapan chatbot yang memaksa efek dramatis.</p>
+      </article>
+    </section>
 
-      /* corner aether glow */
-      .corner-aura {
-        position: fixed;
-        width: 280px;
-        height: 280px;
-        background: radial-gradient(circle, rgba(94,135,132,0.2) 0%, rgba(0,0,0,0) 70%);
-        pointer-events: none;
-        z-index: 0;
-      }
+    <section class="highlight-card">
+      <span class="eyebrow">Yang dijaga dalam redesign ini</span>
+      <h2>Fokus utama Luo-Learn</h2>
+      <ul>
+        <li>Keterbacaan yang baik untuk sesi belajar mandiri.</li>
+        <li>Navigasi yang konsisten antar halaman.</li>
+        <li>Responsif untuk layar kecil tanpa elemen yang berdesakan.</li>
+        <li>Konten yang tetap terasa manusiawi dan relevan untuk pelajar SMP.</li>
+      </ul>
+    </section>
+  </main>
 
-      /* ===== NAVBAR STYLE (Honkai) ===== */
-      .glass-nav {
-        background: rgba(6, 18, 14, 0.85);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(221, 198, 173, 0.2);
-        transition: all 0.3s ease;
-      }
-      
-      .nav-link {
-        position: relative;
-        color: #CACFC7;
-        font-weight: 450;
-        letter-spacing: 0.3px;
-        transition: all 0.25s ease;
-        padding: 0.4rem 0;
-      }
-      
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -4px;
-        width: 0%;
-        height: 1.5px;
-        background: linear-gradient(90deg, #DDC6AD, #5E8784, transparent);
-        transition: width 0.3s ease;
-      }
-      
-      .nav-link:hover {
-        color: #DDC6AD;
-        text-shadow: 0 0 3px rgba(221, 198, 173, 0.3);
-      }
-      
-      .nav-link:hover::after {
-        width: 100%;
-      }
-      
-      .nav-link.active {
-        color: #DDC6AD;
-      }
-      
-      /* Hamburger menu */
-      .line {
-        width: 22px;
-        height: 2px;
-        background: #DDC6AD;
-        transition: all 0.3s ease;
-        border-radius: 2px;
-      }
-      
-      .menu-open .line:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-      }
-      
-      .menu-open .line:nth-child(2) {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-      
-      .menu-open .line:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
-      }
-      
-      /* Glassmorphism card honkai */
-      .glass-card-honkai {
-        background: rgba(5, 18, 14, 0.55);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(221, 198, 173, 0.25);
-        box-shadow: 0 25px 45px -20px rgba(0, 0, 0, 0.6), inset 0 0 0 0.5px rgba(221,198,173,0.1);
-        transition: all 0.4s ease;
-      }
+  <footer class="site-footer">
+    <p>Luo-Learn masih berupa prototype, tetapi struktur dan gaya bacanya disiapkan agar mudah dikembangkan lebih lanjut.</p>
+  </footer>
 
-      .glass-card-honkai:hover {
-        border-color: rgba(221, 198, 173, 0.45);
-        box-shadow: 0 30px 50px -22px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(94,135,132,0.2) inset;
-      }
-
-      /* typing cursor glow */
-      .cursor-glow {
-        display: inline-block;
-        width: 2px;
-        height: 1.2em;
-        background: linear-gradient(180deg, #DDC6AD, #5E8784);
-        margin-left: 3px;
-        vertical-align: middle;
-        animation: blinkCursor 0.9s infinite;
-        border-radius: 2px;
-      }
-
-      @keyframes blinkCursor {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.2; }
-      }
-
-      /* ornate divider */
-      .ornament-divider {
-        background: linear-gradient(90deg, transparent, #DDC6AD, #5E8784, #DDC6AD, transparent);
-        height: 1px;
-        width: 100%;
-        margin: 1rem 0;
-      }
-
-      /* pulse for badge */
-      @keyframes softPulse {
-        0% { box-shadow: 0 0 0 0 rgba(221,198,173,0.2); }
-        70% { box-shadow: 0 0 0 6px rgba(221,198,173,0); }
-        100% { box-shadow: 0 0 0 0 rgba(221,198,173,0); }
-      }
-
-      .pulse-ring {
-        animation: softPulse 2s infinite;
-      }
-
-      /* responsive text */
-      @media (max-width: 640px) {
-        .glass-card-honkai {
-          backdrop-filter: blur(16px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-
-    <!-- background starfield container -->
-    <div id="starfieldCanvas" class="fixed inset-0 pointer-events-none z-0"></div>
-    <div class="corner-aura top-0 left-0"></div>
-    <div class="corner-aura bottom-0 right-0" style="transform: rotate(180deg);"></div>
-
-    <!-- ===== NAVBAR ===== -->
-    <nav class="glass-nav fixed w-full top-0 z-50 transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-5 md:px-8 px-4 sm:px-5 md:px-8 py-3 flex justify-between items-center">
-        <!-- brand area -->
-        <a href="./index.html" class="flex items-center gap-2 md:gap-3 group">
-          <img src="./assets/Luocha.png" alt="Luo-Learn Crest" class="h-7 md:h-8 transition-transform group-hover:scale-105" 
-               onerror="this.src='https://placehold.co/32x32/2C4A3E/DDC6AD?text=✦'">
-          <span class="text-base md:text-lg font-bold tracking-wide bg-gradient-to-r from-[#DDC6AD] to-[#B7C7C4] bg-clip-text text-transparent">
-            Luo-Learn
-          </span>
-          <span class="hidden sm:inline-block text-[9px] md:text-[10px] font-mono bg-[#5E8784]/30 px-2 py-0.5 rounded-full border border-[#DDC6AD]/30">★ Trailblaze</span>
-        </a>
-        
-        <!-- desktop menu -->
-        <ul class="hidden md:flex gap-5 lg:gap-7 text-sm font-medium">
-          <li><a href="./index.html" class="nav-link">Home</a></li>
-          <li><a href="./demo.html" class="nav-link">Materi</a></li>
-          <li><a href="#" class="nav-link">Soal-Soal</a></li>
-          <li><a href="./about.html" class="nav-link active">About</a></li>
-        </ul>
-        
-        <!-- mobile hamburger -->
-        <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 p-1.5 rounded-lg transition-all active:scale-95">
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
-        </button>
-      </div>
-      
-      <!-- Mobile Dropdown Menu -->
-      <div id="mobileMenu" class="md:hidden overflow-hidden opacity-0 transition-all duration-500 ease-out px-5">
-        <div class="bg-[rgba(5,18,14,0.9)] backdrop-blur-xl rounded-2xl p-5 mt-2 flex flex-col gap-2 border-l-4 border-[#DDC6AD]/40">
-          <a href="./index.html" class="nav-link py-2 px-3 rounded-xl transition-all block">🏠 Home</a>
-          <a href="./demo.html" class="nav-link py-2 px-3 rounded-xl transition-all block">📚 Materi &amp; Kisi-Kisi</a>
-          <a href="#" class="nav-link py-2 px-3 rounded-xl transition-all block">✏️ Soal-Soal</a>
-          <a href="./about.html" class="nav-link active py-2 px-3 rounded-xl transition-all block">👤 About</a>
-        </div>
-      </div>
-    </nav>
-
-    <main class="relative z-10 min-h-screen flex items-center justify-center px-5 py-28 md:py-32">
-      <div class="max-w-5xl w-full mx-auto">
-        
-        <!-- Title Section with Honkai flair -->
-        <div class="text-center md:text-left mb-7 md:mb-9">
-          <div class="inline-flex items-center gap-2 bg-[#0F2A22]/60 backdrop-blur-sm px-4 py-1.5 rounded-full border border-[#5E8784]/40 mb-4 pulse-ring">
-            <span class="w-1.5 h-1.5 bg-[#DDC6AD] rounded-full animate-pulse"></span>
-            <span class="text-[10px] sm:text-[11px] tracking-wider text-[#DDC6AD] font-mono font-semibold">✦ AETHER CHRONICLES ✦</span>
-          </div>
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
-            <span class="bg-gradient-to-r from-[#DDC6AD] via-[#EAD5B3] to-[#B7C7C4] bg-clip-text text-transparent">
-              Tentang Kami
-            </span>
-          </h1>
-          <div class="w-16 h-[2px] bg-gradient-to-r from-[#DDC6AD] to-transparent mt-4 mx-auto md:mx-0"></div>
-          <p class="text-neutral-300 text-sm sm:text-base md:text-lg mt-4 max-w-2xl mx-auto md:mx-0 font-light tracking-wide">
-            Sosok yang tidak hanya mengajar... tapi <span class="text-[#DDC6AD] font-medium">memahami</span> setiap denyut perjalanan.
-          </p>
-        </div>
-
-        <!-- Main Card — Immersive Honkai Style -->
-        <div class="relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 glass-card-honkai group">
-          
-          <!-- Background Image with parallax scale effect -->
-          <div class="absolute inset-0 overflow-hidden">
-            <img 
-              src="https://i.pinimg.com/736x/93/a5/00/93a500e2b4dceec07d8bcdf4729b78aa.jpg" 
-              alt="Luocha Otto Background"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              style="filter: brightness(0.45) contrast(1.05) saturate(0.9);"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-[#030b08] via-[#0B1F18]/70 to-transparent"></div>
-          </div>
-
-          <!-- Honkai corner runes (decorative) -->
-          <div class="absolute top-5 left-5 w-10 h-10 border-l-2 border-t-2 border-[#DDC6AD]/40 rounded-tl-xl z-10 hidden sm:block"></div>
-          <div class="absolute bottom-5 right-5 w-10 h-10 border-r-2 border-b-2 border-[#DDC6AD]/40 rounded-br-xl z-10 hidden sm:block"></div>
-
-          <!-- Content Zone -->
-          <div class="relative z-20 flex flex-col justify-end p-5 sm:p-7 md:p-10 lg:p-12 min-h-[320px] sm:min-h-[420px] md:min-h-[520px]">
-            
-            <!-- Teacher Badge -->
-            <div class="flex items-center gap-3 flex-wrap mb-3">
-              <span class="text-[11px] sm:text-xs tracking-[0.2em] text-[#DDC6AD] font-semibold uppercase bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full border border-[#5E8784]/40">
-                ✦ Grand Mentor ✦
-              </span>
-              <span class="text-[11px] text-[#AAB7AF] font-mono flex items-center gap-1">
-                <span class="w-1 h-1 bg-[#5E8784] rounded-full"></span> Path of Transcendence
-              </span>
-            </div>
-
-            <!-- Name with glow -->
-            <h2 class="text-2xl sm:text-3xl md:text-4xl  text-white font-bold mb-3 tracking-wide flex items-center gap-2 flex-wrap">
-              Luocha 
-              <span class="text-[#DDC6AD] text-xl md:text-2xl">/</span> 
-              <span class="text-[#B7C7C4]">Otto</span>
-              <span class="text-xs bg-[#5E8784]/30 px-2 py-0.5 rounded-full font-mono ml-2">✦ Apotheosis ✦</span>
-            </h2>
-            
-            <div class="ornament-divider my-2 opacity-60"></div>
-
-            <!-- Typing area with dynamic effect -->
-            <div class="mt-3 max-w-2xl">
-              <p id="typing" class="text-sm sm:text-base md:text-lg text-neutral-100 leading-relaxed font-light tracking-wide [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]">
-              </p>
-              <span id="cursor" class="cursor-glow"></span>
-            </div>
-
-            <!-- subtle honkai quote floating -->
-            <div class="mt-6 pt-3 border-t border-[#5E8784]/30 flex items-center gap-2 text-[11px] text-[#9AADA3]">
-              <svg class="w-3 h-3 text-[#DDC6AD]" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              <span>"Kesunyian adalah guru terbaik bagi jiwa yang merenung"</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Additional aesthetic decor: constellation line -->
-        <div class="flex justify-center gap-2 mt-8 opacity-40">
-          <span class="w-1 h-1 rounded-full bg-[#DDC6AD]"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#5E8784]"></span>
-          <span class="w-6 h-[1px] bg-gradient-to-r from-[#5E8784] to-[#DDC6AD]"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#DDC6AD]"></span>
-          <span class="w-1 h-1 rounded-full bg-[#B7C7C4]"></span>
-          <span class="w-3 h-[1px] bg-[#5E8784]"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#DDC6AD]"></span>
-        </div>
-      </div>
-    </main>
-
-    <footer class="relative z-10 text-center py-5 text-[10px] sm:text-[11px] text-[#7D8F85] border-t border-[#5E8784]/20 max-w-6xl mx-auto mt-4 px-4">
-      <p>✦ Honkai Resonance — Luo-Learn | Tentang Sang Guru, Tentang Perjalanan Tak Terlupakan ✦</p>
-    </footer>
-
-    <script>
-      // Complete narrative text
-      const fullText = `Di sebuah akademi yang jauh dari hiruk pikuk dunia, ada seorang guru yang selalu datang paling pagi. Kami sebut namanya adalah Luocha.\n\nIa mengajar "Ilmu Kehidupan". Namun murid-murid tahu… pelajarannya lebih dalam dari itu.\n\n"Tubuh manusia adalah perjanjian yang rapuh."\n\nTidak ada ujian. Tidak ada buku. Hanya keheningan, pengamatan… dan kejujuran terhadap diri sendiri.\n\nSaat seseorang hampir menyerah, ia selalu muncul tanpa dipanggil.\n\n"Kamu masih di sini. Itu sudah cukup untuk hari ini."`;
-
-      const typingElement = document.getElementById("typing");
-      const cursorSpan = document.getElementById("cursor");
-      let index = 0;
-
-      function typeEffect() {
-        if (index < fullText.length) {
-          typingElement.textContent += fullText.charAt(index);
-          index++;
-          const delay = (fullText.charAt(index - 1) === '\n') ? 60 : 28;
-          setTimeout(typeEffect, delay);
-        } else {
-          if (cursorSpan) {
-            cursorSpan.style.opacity = "0.5";
-          }
-        }
-      }
-
-      setTimeout(typeEffect, 400);
-
-      // ===== STARFIELD GENERATOR =====
-      function generateCosmicDust() {
-        const starContainer = document.getElementById("starfieldCanvas");
-        if (!starContainer) return;
-        starContainer.innerHTML = '';
-        const particleCount = 140;
-        for (let i = 0; i < particleCount; i++) {
-          const dust = document.createElement('div');
-          dust.classList.add('cosmic-dust');
-          const size = Math.random() * 2.6 + 0.6;
-          dust.style.width = size + 'px';
-          dust.style.height = size + 'px';
-          dust.style.left = Math.random() * 100 + '%';
-          dust.style.top = Math.random() * 100 + '%';
-          dust.style.opacity = Math.random() * 0.6 + 0.1;
-          dust.style.animation = `floatStarUp ${Math.random() * 8 + 7}s infinite ease-in-out`;
-          dust.style.animationDelay = Math.random() * 10 + 's';
-          starContainer.appendChild(dust);
-        }
-      }
-
-      generateCosmicDust();
-
-      // Mobile menu toggle
-      const menuBtn = document.getElementById("menuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-      
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener("click", () => {
-          const isClosed = mobileMenu.classList.contains("max-h-0");
-          if (isClosed) {
-            mobileMenu.classList.remove("max-h-0", "opacity-0");
-            mobileMenu.classList.add("max-h-[450px]", "opacity-100");
-            menuBtn.classList.add("menu-open");
-          } else {
-            mobileMenu.classList.add("max-h-0", "opacity-0");
-            mobileMenu.classList.remove("max-h-[450px]", "opacity-100");
-            menuBtn.classList.remove("menu-open");
-          }
-        });
-        
-        const mobileLinks = mobileMenu.querySelectorAll("a");
-        mobileLinks.forEach(link => {
-          link.addEventListener("click", () => {
-            mobileMenu.classList.add("max-h-0", "opacity-0");
-            mobileMenu.classList.remove("max-h-[450px]", "opacity-100");
-            menuBtn.classList.remove("menu-open");
-          });
-        });
-      }
-
-      // Resize event
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          generateCosmicDust();
-        }, 200);
-      });
-
-      // Parallax effect for background
-      const card = document.querySelector('.glass-card-honkai');
-      const bgImg = card?.querySelector('img');
-      if (card && bgImg && window.innerWidth > 768) {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          const moveX = (x - 0.5) * 12;
-          const moveY = (y - 0.5) * 8;
-          bgImg.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          bgImg.style.transform = 'scale(1)';
-        });
-      }
-
-      // Navbar scroll effect
-      const nav = document.querySelector('.glass-nav');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-          nav.style.background = "rgba(6, 18, 14, 0.95)";
-          nav.style.backdropFilter = "blur(20px)";
-        } else {
-          nav.style.background = "rgba(6, 18, 14, 0.85)";
-          nav.style.backdropFilter = "blur(16px)";
-        }
-      });
-      
-      // Fallback image
-      const bgImage = document.querySelector('.glass-card-honkai img');
-      if (bgImage && bgImage.complete && bgImage.naturalWidth === 0) {
-        bgImage.src = "https://placehold.co/1200x800/1E2E28/DDC6AD?text=Luocha+Garden";
-      }
-    </script>
-  </body>
+  <script src="./script.js"></script>
+</body>
 </html>

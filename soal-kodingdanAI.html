@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Luo-Learn | Buku Saku Berpikir Komputasional dan AI</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-alt: #f1ece2;
+      --line: rgba(53, 65, 54, 0.12);
+      --text: #223328;
+      --muted: #5e6f62;
+      --accent: #2f6e62;
+      --accent-strong: #1f5148;
+      --accent-soft: #dfe9e3;
+      --warm: #f3e7cf;
+      --shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(117, 154, 138, 0.16), transparent 24%),
+        linear-gradient(180deg, #fcfaf5 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(246, 242, 234, 0.92);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header-inner,
+    .mobile-nav,
+    .reading-shell,
+    .site-footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      padding: 8px;
+      background: linear-gradient(180deg, #ffffff, #eef4ef);
+      border: 1px solid rgba(47, 110, 98, 0.16);
+      box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
+    }
+
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .mobile-nav[data-open="true"] { display: grid; }
+
+    .reading-shell {
+      padding: 44px 0 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .reading-hero,
+    .chapter,
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid rgba(53, 65, 54, 0.08);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .reading-hero {
+      padding: clamp(26px, 4vw, 42px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Literata", serif;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 4vw, 4.4rem);
+      line-height: 1.03;
+      max-width: 12ch;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-copy {
+      max-width: 68ch;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .hero-meta span {
+      border-radius: 999px;
+      background: var(--surface-alt);
+      padding: 8px 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border: 1px solid rgba(53, 65, 54, 0.08);
+    }
+
+    .summary-grid,
+    .chapter-grid,
+    .mini-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .summary-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .summary-card,
+    .mini-card {
+      padding: 22px;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .chapter {
+      padding: clamp(24px, 4vw, 36px);
+    }
+
+    .chapter-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+
+    .mini-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      background: var(--surface-alt);
+      border: 1px solid rgba(53, 65, 54, 0.08);
+      border-radius: 24px;
+    }
+
+    .mini-card ul,
+    .callout ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .callout {
+      background: linear-gradient(180deg, rgba(223, 233, 227, 0.72), rgba(255, 255, 255, 0.8));
+      border: 1px solid rgba(53, 65, 54, 0.08);
+      border-radius: 24px;
+      padding: 20px;
+    }
+
+    .callout.warn {
+      background: linear-gradient(180deg, rgba(243, 231, 207, 0.92), rgba(255, 255, 255, 0.85));
+    }
+
+    .chapter-divider {
+      width: 72px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin-bottom: 18px;
+    }
+
+    .reading-list {
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .site-footer {
+      padding-bottom: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .summary-grid,
+      .chapter-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { max-width: none; }
+    }
+
+    @media (max-width: 640px) {
+      .site-header-inner,
+      .mobile-nav,
+      .reading-shell,
+      .site-footer {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .reading-shell {
+        padding: 28px 0 56px;
+      }
+
+      .reading-hero,
+      .chapter,
+      .summary-card {
+        border-radius: 26px;
+      }
+
+      .summary-card,
+      .mini-card,
+      .callout {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="reading-shell">
+    <section class="reading-hero">
+      <span class="eyebrow">Buku Saku</span>
+      <h1>Ensiklopedia Berpikir Komputasional dan AI</h1>
+      <p class="hero-copy">
+        Buku saku ini merangkum fondasi berpikir komputasional, algoritma, data digital,
+        pengenalan AI, sampai contoh penerapannya dalam kehidupan sehari-hari. Isinya disusun
+        untuk siswa SMP yang ingin memahami konsep dasar Informatika tanpa harus membaca tampilan
+        yang terlalu ramai.
+      </p>
+      <div class="hero-meta">
+        <span>Bahasa sederhana</span>
+        <span>Fokus keterbacaan</span>
+        <span>Cocok dibaca bertahap</span>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <article class="summary-card">
+        <strong>Bab 1</strong>
+        <p>Pengantar berpikir komputasional, sejarah singkat, dan alasan kenapa keterampilan ini penting.</p>
+      </article>
+      <article class="summary-card">
+        <strong>Bab 2</strong>
+        <p>Lima pilar utama, flowchart, pseudocode, dan kesalahan umum saat menyusun solusi.</p>
+      </article>
+      <article class="summary-card">
+        <strong>Bab 3 dan 4</strong>
+        <p>Fondasi Informatika SMP, AI dasar, optimasi, etika digital, dan studi kasus sederhana.</p>
+      </article>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-divider"></div>
+      <span class="eyebrow">Bab 1</span>
+      <h2>Fondasi Fundamental</h2>
+      <div class="chapter-grid">
+        <div>
+          <h3>Apa itu berpikir komputasional?</h3>
+          <p>
+            Berpikir komputasional adalah cara berpikir untuk mengenali masalah, memecahnya,
+            memilih informasi yang penting, lalu menyusun solusi agar manusia atau komputer bisa
+            menjalankannya dengan efektif.
+          </p>
+          <div class="mini-grid">
+            <article class="mini-card">
+              <h4>Mengapa penting?</h4>
+              <ul>
+                <li>Membantu menyelesaikan masalah yang kompleks.</li>
+                <li>Melatih cara berpikir logis dan runtut.</li>
+                <li>Membuat kita tidak hanya menjadi pengguna teknologi, tetapi juga memahami polanya.</li>
+              </ul>
+            </article>
+            <article class="mini-card">
+              <h4>Sejarah singkat</h4>
+              <ul>
+                <li>Pendidikan komputer sejak lama memakai pola pikir ini.</li>
+                <li>Istilah ini makin dikenal luas setelah dipopulerkan kembali oleh Jeanette Wing.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="callout">
+          <h3>Ciri pemikir komputasional</h3>
+          <ul>
+            <li>Logis dan kritis saat membaca situasi.</li>
+            <li>Teliti terhadap langkah dan detail.</li>
+            <li>Mampu mencari pola di banyak contoh.</li>
+            <li>Tidak langsung panik saat masalah terlihat rumit.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-divider"></div>
+      <span class="eyebrow">Bab 2</span>
+      <h2>Pilar dan Implementasi</h2>
+      <div class="mini-grid">
+        <article class="mini-card">
+          <h3>1. Dekomposisi</h3>
+          <p>Masalah besar dipecah menjadi bagian-bagian kecil agar lebih mudah ditangani.</p>
+        </article>
+        <article class="mini-card">
+          <h3>2. Pengenalan Pola</h3>
+          <p>Mencari kesamaan atau kebiasaan yang berulang agar solusi tidak dibuat dari nol setiap saat.</p>
+        </article>
+        <article class="mini-card">
+          <h3>3. Abstraksi</h3>
+          <p>Fokus pada hal yang penting dan mengabaikan detail yang belum perlu dipikirkan.</p>
+        </article>
+        <article class="mini-card">
+          <h3>4. Algoritma</h3>
+          <p>Menyusun urutan langkah yang jelas, sistematis, dan bisa diikuti tanpa ambigu.</p>
+        </article>
+      </div>
+      <div class="callout warn" style="margin-top: 18px;">
+        <h3>5. Evaluasi atau debugging</h3>
+        <p>
+          Setelah solusi dibuat, kita masih harus memeriksa apakah langkahnya sudah efisien,
+          apakah ada kesalahan, dan apakah solusi itu tetap bekerja jika input berubah.
+        </p>
+      </div>
+      <div class="chapter-grid" style="margin-top: 18px;">
+        <div class="callout">
+          <h3>Flowchart dan pseudocode</h3>
+          <p>Flowchart membantu menggambar alur keputusan. Pseudocode membantu menulis logika dengan bahasa yang lebih dekat ke manusia.</p>
+          <ul>
+            <li>Flowchart cocok saat ingin melihat alur secara visual.</li>
+            <li>Pseudocode cocok saat ingin melatih logika sebelum menulis kode.</li>
+            <li>Keduanya membantu mengurangi kebingungan saat solusi mulai panjang.</li>
+          </ul>
+        </div>
+        <div class="callout warn">
+          <h3>Kesalahan umum</h3>
+          <ul>
+            <li>Membuat solusi terlalu rumit untuk masalah yang sederhana.</li>
+            <li>Hanya memikirkan kondisi ideal dan lupa kemungkinan input yang aneh.</li>
+            <li>Tidak menguji ulang langkah setelah solusi selesai ditulis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-divider"></div>
+      <span class="eyebrow">Bab 3</span>
+      <h2>Fondasi Informatika SMP</h2>
+      <div class="chapter-grid">
+        <div>
+          <h3>Logika dan sistem bilangan</h3>
+          <p>
+            Komputer bekerja dengan keputusan yang berbasis benar atau salah. Dari sinilah gerbang
+            logika seperti AND, OR, dan NOT dipakai. Di sisi lain, komputer juga menyimpan data
+            menggunakan angka biner, yaitu 0 dan 1.
+          </p>
+          <ul class="reading-list">
+            <li>AND berarti benar jika semua syarat benar.</li>
+            <li>OR berarti benar jika salah satu syarat benar.</li>
+            <li>NOT berarti membalik nilai dari kondisi awal.</li>
+            <li>Bilangan desimal adalah sistem yang biasa dipakai manusia.</li>
+            <li>Bilangan biner adalah sistem dasar yang dipakai mesin.</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <h3>Representasi data</h3>
+          <p>
+            Teks dapat diubah menjadi kode angka, gambar tersusun dari piksel, dan suara pun
+            disimpan sebagai data digital. Intinya, banyak hal yang kita lihat di layar sebenarnya
+            adalah bentuk representasi data.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-grid">
+        <article class="mini-card">
+          <h3>Algoritma klasik dasar</h3>
+          <ul>
+            <li>Pencarian linear memeriksa data satu per satu.</li>
+            <li>Pencarian biner lebih cepat jika data sudah terurut.</li>
+            <li>Bubble sort dan insertion sort mengenalkan konsep pengurutan data.</li>
+          </ul>
+        </article>
+        <article class="mini-card">
+          <h3>Struktur sederhana</h3>
+          <ul>
+            <li>Stack mirip tumpukan piring: yang terakhir masuk, keluar lebih dulu.</li>
+            <li>Queue mirip antrean: yang datang duluan, dilayani duluan.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-divider"></div>
+      <span class="eyebrow">Bab 4</span>
+      <h2>Pengenalan AI dan Studi Kasus</h2>
+      <div class="chapter-grid">
+        <div>
+          <h3>AI untuk siswa SMP</h3>
+          <p>
+            AI membantu komputer mengenali pola dari data. Contohnya terlihat di rekomendasi video,
+            filter wajah, penerjemah otomatis, dan chatbot. Meski terlihat pintar, AI tetap punya
+            keterbatasan dan bisa salah jika datanya buruk.
+          </p>
+          <div class="mini-grid">
+            <article class="mini-card">
+              <h4>Penerapan sehari-hari</h4>
+              <ul>
+                <li>Rekomendasi tontonan dan musik.</li>
+                <li>Pengenalan wajah di ponsel.</li>
+                <li>Asisten suara dan mesin penerjemah.</li>
+              </ul>
+            </article>
+            <article class="mini-card">
+              <h4>Hal yang perlu diwaspadai</h4>
+              <ul>
+                <li>Deepfake dan penyebaran hoaks.</li>
+                <li>Bias karena data latih yang buruk.</li>
+                <li>Halusinasi ketika chatbot menyampaikan informasi yang meyakinkan tetapi salah.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <div class="callout warn">
+          <h3>Etika digital</h3>
+          <p>
+            Saat belajar teknologi, siswa juga perlu memahami jejak digital, keamanan data, dan
+            tanggung jawab saat memakai alat bantu berbasis AI.
+          </p>
+        </div>
+      </div>
+
+      <div class="chapter-grid" style="margin-top: 18px;">
+        <div class="callout">
+          <h3>Optimasi sederhana</h3>
+          <ul>
+            <li>Memilih barang terbaik untuk dimasukkan ke ransel adalah contoh masalah optimasi.</li>
+            <li>Mencari rute paling singkat juga termasuk berpikir komputasional.</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <h3>Studi kasus nyata</h3>
+          <ul>
+            <li>Menyusun sistem presensi atau inventaris membutuhkan dekomposisi dan algoritma.</li>
+            <li>Membuat aplikasi sekolah juga butuh validasi data, pengujian, dan evaluasi solusi.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Buku saku ini dirancang untuk dibaca bertahap. Jika ingin alur yang lebih singkat, kembali ke pusat materi lalu pilih topik yang paling ingin dipelajari dulu.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
