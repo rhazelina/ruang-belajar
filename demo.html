@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -9,25 +9,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #0F1A13;
-      --bg-surface: #2C2F2A;
-      --bg-card: #3F433C;
-      --bg-hover: #4E5147;
-      --text-primary: #DAD9D0;
-      --text-secondary: #A8A89E;
-      --text-muted: #7E7D70;
-      --primary-700: #84664D;
-      --primary-400: #B49C82;
-      --primary-300: #C3AB91;
-      --primary-100: #DDC6AD;
-      --accent-600: #5E8784;
-      --accent-400: #89AEB0;
-      --btn-primary: #84664D;
-      --btn-primary-hover: #6E4430;
-      --btn-primary-text: #DDC6AD;
-      --btn-accent: #5E8784;
-      --btn-accent-hover: #3E6667;
-      --btn-accent-text: #DAD9D0;
+      --bg-main: #f3efe6;
+      --bg-surface: rgba(255, 255, 255, 0.88);
+      --bg-card: #f7f4ee;
+      --bg-hover: #edf3ee;
+      --text-primary: #213126;
+      --text-secondary: #5c6e60;
+      --text-muted: #788879;
+      --primary-700: #2f6e62;
+      --primary-400: #5f8d81;
+      --primary-300: #6d978b;
+      --primary-100: #dfe9e3;
+      --accent-600: #2f6e62;
+      --accent-400: #7fa79f;
+      --btn-primary: #2f6e62;
+      --btn-primary-hover: #1f5148;
+      --btn-primary-text: #f6fbf8;
+      --btn-accent: #dfe9e3;
+      --btn-accent-hover: #d3e1da;
+      --btn-accent-text: #213126;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -35,7 +35,9 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg-main);
+      background:
+        radial-gradient(circle at top left, rgba(117, 154, 138, 0.15), transparent 26%),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg-main) 100%);
       color: var(--text-primary);
       min-height: 100vh;
       overflow-x: hidden;
@@ -55,52 +57,68 @@
 
     /* ===== NAVBAR ===== */
     .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: rgba(15,26,19,0.96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(132,102,77,0.15);
+      position: sticky; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(243,239,230,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(53,65,54,0.12);
     }
     .nav-inner {
-      max-width: 1160px; margin: 0 auto;
+      width: min(1120px, calc(100% - 32px)); margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 1.5rem; height: 62px;
+      padding: 0; min-height: 78px;
     }
     .nav-brand {
       display: flex; align-items: center; gap: 0.5rem;
       color: var(--text-primary);
     }
-    .nav-brand img { height: 26px; }
+    .nav-brand img {
+      width: 42px; height: 42px;
+      padding: 8px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffffff, #eef4ef);
+      border: 1px solid rgba(47, 110, 98, 0.16);
+      box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
+    }
     .nav-brand span {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 700;
+      font-size: 1rem; font-weight: 700;
     }
-    .nav-links { display: flex; gap: 2px; list-style: none; }
+    .nav-links { display: flex; gap: 8px; list-style: none; }
     .nav-links a {
-      display: block; padding: 0.4rem 0.9rem;
-      color: var(--text-secondary); font-size: 0.855rem; font-weight: 500;
-      border-radius: 7px; transition: all 0.18s;
+      display: block; padding: 0.65rem 0.9rem;
+      color: var(--text-secondary); font-size: 0.95rem; font-weight: 600;
+      border-radius: 999px; transition: all 0.18s;
     }
-    .nav-links a:hover { color: var(--text-primary); background: rgba(132,102,77,0.12); }
-    .nav-links a.active { color: var(--primary-300); }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] { color: var(--primary-700); background: var(--primary-100); }
     .nav-hamburger {
-      display: none; background: none; border: none;
-      color: var(--text-primary); cursor: pointer; padding: 6px;
-      border-radius: 7px; transition: background 0.18s;
+      display: none; border: 1px solid rgba(53,65,54,0.12);
+      background: #fff;
+      color: var(--text-primary); cursor: pointer; padding: 11px 15px;
+      border-radius: 999px; transition: background 0.18s;
+      font: inherit; font-weight: 700;
     }
-    .nav-hamburger:hover { background: rgba(132,102,77,0.12); }
+    .nav-hamburger:hover { background: var(--primary-100); }
     .nav-mobile {
-      display: none; border-top: 1px solid rgba(132,102,77,0.1);
-      padding: 0 1.5rem; max-height: 0;
-      transition: max-height 0.3s ease, padding 0.3s;
+      display: none;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto 16px;
+      padding: 12px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(53,65,54,0.12);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
+      grid-template-columns: 1fr;
+      gap: 4px;
     }
-    .nav-mobile.open { display: block; max-height: 300px; padding: 0.75rem 1.5rem 1.25rem; }
+    .nav-mobile[data-open="true"] { display: grid; }
     .nav-mobile ul { list-style: none; }
     .nav-mobile li a {
-      display: block; padding: 0.6rem 0.5rem;
-      color: var(--text-secondary); font-size: 0.9rem;
-      border-radius: 7px; transition: all 0.18s;
+      display: block; padding: 0.7rem 0.8rem;
+      color: var(--text-secondary); font-size: 0.95rem;
+      border-radius: 999px; transition: all 0.18s; font-weight: 600;
     }
-    .nav-mobile li a:hover { color: var(--text-primary); background: rgba(132,102,77,0.1); }
+    .nav-mobile li a:hover,
+    .nav-mobile li a[aria-current="page"] { color: var(--primary-700); background: var(--primary-100); }
     @media (max-width: 720px) {
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
@@ -108,8 +126,8 @@
 
     /* ===== PAGE HEADER ===== */
     .page-header {
-      padding: 96px 1.5rem 2rem;
-      max-width: 1160px; margin: 0 auto;
+      padding: 40px 0 2rem;
+      width: min(1120px, calc(100% - 32px)); margin: 0 auto;
     }
     .breadcrumb {
       display: flex; align-items: center; gap: 6px;
@@ -121,13 +139,14 @@
     .breadcrumb-sep { opacity: 0.4; }
     .page-header h1 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 0.5rem; }
     .page-header p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
+    .page-header > p:last-of-type { display: none; }
 
     /* Progress Overview */
     .prog-overview {
       margin-top: 1.5rem;
       background: var(--bg-surface);
-      border: 1px solid rgba(132,102,77,0.12);
-      border-radius: 12px; padding: 1.1rem 1.4rem;
+      border: 1px solid rgba(53,65,54,0.08);
+      border-radius: 24px; padding: 1.1rem 1.4rem;
       display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
     }
     .prog-label { font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; }
@@ -145,8 +164,8 @@
 
     /* ===== SEARCH + FILTER ===== */
     .search-bar-section {
-      max-width: 1160px; margin: 0 auto;
-      padding: 0 1.5rem 2rem;
+      width: min(1120px, calc(100% - 32px)); margin: 0 auto;
+      padding: 0 0 2rem;
     }
     .search-wrap {
       position: relative; margin-bottom: 1rem;
@@ -189,7 +208,7 @@
     }
 
     /* ===== MATERI ACCORDION ===== */
-    .section { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem 2.5rem; }
+    .section { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 0 0 2.5rem; }
     .section-hd { margin-bottom: 1.25rem; }
     .section-ey {
       font-size: 0.72rem; text-transform: uppercase;
@@ -448,22 +467,21 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="./index.html" class="nav-brand">
-      <img src="./assets/Luocha.png" alt="Logo">
+      <img src="./assets/Luocha.png" alt="Logo Luo-Learn">
       <span>Luo-Learn</span>
     </a>
     <ul class="nav-links">
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./demo.html" class="active">Materi</a></li>
-      <li><a href="#">Soal-Soal</a></li>
-      <li><a href="./about.html">About</a></li>
+      <li><a data-nav href="./index.html">Beranda</a></li>
+      <li><a data-nav href="./materi.html">Materi</a></li>
+      <li><a data-nav href="./soal-kodingdanAI.html">Buku Saku</a></li>
+      <li><a data-nav href="./demo.html">Soal / Kisi-Kisi</a></li>
+      <li><a data-nav href="./about.html">Tentang</a></li>
     </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
+    <button class="nav-hamburger" data-menu-toggle="nav-mobile" aria-expanded="false" aria-controls="nav-mobile">
+      Menu
     </button>
   </div>
-  <div class="nav-mobile" id="nav-mobile">
+  <div class="nav-mobile" id="nav-mobile-legacy" data-open="false" hidden>
     <ul>
       <li><a href="./index.html">🏠 Home</a></li>
       <li><a href="./demo.html">📚 Materi &amp; Kisi-Kisi</a></li>
@@ -471,16 +489,26 @@
       <li><a href="./about.html">👤 About</a></li>
     </ul>
   </div>
+  <div class="nav-mobile" id="nav-mobile" data-open="false">
+    <ul>
+      <li><a data-nav href="./index.html">Beranda</a></li>
+      <li><a data-nav href="./materi.html">Materi</a></li>
+      <li><a data-nav href="./soal-kodingdanAI.html">Buku Saku</a></li>
+      <li><a data-nav href="./demo.html">Soal / Kisi-Kisi</a></li>
+      <li><a data-nav href="./about.html">Tentang</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- ===== PAGE HEADER ===== -->
 <div class="page-header">
   <div class="breadcrumb">
-    <a href="./index.html">Home</a>
+    <a href="./index.html">Beranda</a>
     <span class="breadcrumb-sep">›</span>
-    <span style="color:var(--text-primary)">Materi &amp; Kisi-Kisi</span>
+    <span style="color:var(--text-primary)">Soal dan Kisi-Kisi</span>
   </div>
-  <h1>Materi &amp; Kisi-Kisi PSAJ</h1>
+  <h1>Soal dan Kisi-Kisi Pendukung</h1>
+  <p>Gunakan halaman ini untuk belajar lebih terarah lewat topik, progress, pencarian, dan kisi-kisi.</p>
   <p>Bahasa Indonesia Kelas IX · Tahun Ajaran 2025–2026</p>
 
   <div class="prog-overview">
@@ -762,43 +790,9 @@
   <p>© 2025–2026 Luo-Learn · Bahasa Indonesia Kelas IX</p>
 </footer>
 
-<!-- Pomodoro Widget (same as index) -->
-<div id="pomo-fab">
-  <div class="pomo-panel" id="pomo-panel">
-    <div class="pomo-hd">
-      <span>⏱ Timer Belajar</span>
-      <button class="pomo-close-btn" onclick="closePomoPanel()">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="pomo-tabs">
-      <button class="pomo-tab on" data-mode="work" onclick="setMode(this)">Fokus</button>
-      <button class="pomo-tab" data-mode="short" onclick="setMode(this)">Istirahat</button>
-      <button class="pomo-tab" data-mode="long" onclick="setMode(this)">Panjang</button>
-    </div>
-    <div class="pomo-center">
-      <div class="pomo-clock" id="pomo-clock">25:00</div>
-      <div class="pomo-sub" id="pomo-sub">Sesi ke-1 · Fokus Belajar</div>
-    </div>
-    <div class="pomo-bar-wrap">
-      <div class="pomo-bar" id="pomo-bar" style="width:100%"></div>
-    </div>
-    <div class="pomo-btns">
-      <button class="pomo-btn go" id="pomo-go" onclick="toggleTimer()">▶ Mulai</button>
-      <button class="pomo-btn" onclick="resetTimer()">↺ Reset</button>
-    </div>
-  </div>
-  <button class="pomo-toggle" id="pomo-fab-btn" onclick="togglePomoPanel()" title="Timer Belajar">
-    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-  </button>
-</div>
 
+<script src="./script.js"></script>
 <script>
-// ======= Hamburger =======
-document.getElementById('hamburger').addEventListener('click', function() {
-  document.getElementById('nav-mobile').classList.toggle('open');
-});
-
 // ======= Scroll Progress =======
 window.addEventListener('scroll', function() {
   const el = document.documentElement;
@@ -989,52 +983,6 @@ tblInput.addEventListener('input', function() {
   document.getElementById('tbl-no-results').style.alignItems = vis === 0 ? 'center' : '';
 });
 
-// ======= Pomodoro =======
-const MODES = { work: 25*60, short: 5*60, long: 15*60 };
-const LABELS = { work: 'Fokus Belajar', short: 'Istirahat Pendek', long: 'Istirahat Panjang' };
-let curMode='work', total=MODES.work, left=MODES.work;
-let running=false, tick=null, sessions=1;
-function fmt(s){ return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
-function render(){
-  document.getElementById('pomo-clock').textContent=fmt(left);
-  document.getElementById('pomo-sub').textContent='Sesi ke-'+sessions+' · '+LABELS[curMode];
-  document.getElementById('pomo-bar').style.width=(left/total*100)+'%';
-}
-function setMode(btn){
-  if(running)resetTimer();
-  document.querySelectorAll('.pomo-tab').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on'); curMode=btn.dataset.mode; total=left=MODES[curMode];
-  document.getElementById('pomo-bar').style.background=curMode==='work'?'var(--btn-accent)':'var(--btn-primary)';
-  render();
-}
-function toggleTimer(){
-  if(running){
-    running=false;clearInterval(tick);
-    document.getElementById('pomo-go').textContent='▶ Lanjut';
-    document.getElementById('pomo-fab-btn').classList.remove('ticking');
-  } else {
-    running=true;
-    document.getElementById('pomo-go').textContent='⏸ Jeda';
-    document.getElementById('pomo-fab-btn').classList.add('ticking');
-    tick=setInterval(()=>{
-      if(left<=0){
-        clearInterval(tick);running=false;
-        document.getElementById('pomo-go').textContent='▶ Mulai';
-        document.getElementById('pomo-fab-btn').classList.remove('ticking');
-        if(curMode==='work')sessions++;
-        openPomoPanel();
-        alert(curMode==='work'?'✅ Sesi fokus selesai! Saatnya istirahat.':'📚 Istirahat selesai! Ayo kembali belajar.');
-        resetTimer();return;
-      }
-      left--;render();
-    },1000);
-  }
-}
-function resetTimer(){clearInterval(tick);running=false;left=total;document.getElementById('pomo-go').textContent='▶ Mulai';document.getElementById('pomo-fab-btn').classList.remove('ticking');render();}
-function togglePomoPanel(){document.getElementById('pomo-panel').classList.toggle('show');}
-function openPomoPanel(){document.getElementById('pomo-panel').classList.add('show');}
-function closePomoPanel(){document.getElementById('pomo-panel').classList.remove('show');}
-render();
 </script>
 </body>
 </html>

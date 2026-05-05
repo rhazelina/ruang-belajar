@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Materi Informatika SMP | Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --surface: rgba(255, 255, 255, 0.88);
+      --line: rgba(53, 65, 54, 0.12);
+      --text: #213126;
+      --muted: #5c6e60;
+      --accent: #2f6e62;
+      --accent-strong: #1f5148;
+      --accent-soft: #dfe9e3;
+      --shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(117, 154, 138, 0.15), transparent 26%),
+        linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(243, 239, 230, 0.9);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header-inner,
+    .mobile-nav,
+    .page-shell,
+    .site-footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      padding: 8px;
+      background: linear-gradient(180deg, #ffffff, #eef4ef);
+      border: 1px solid rgba(47, 110, 98, 0.16);
+      box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
+    }
+
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .mobile-nav[data-open="true"] { display: grid; }
+
+    .page-shell {
+      padding: 48px 0 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .page-intro,
+    .learning-path,
+    .topic-card,
+    .resource-links {
+      background: var(--surface);
+      border: 1px solid rgba(53, 65, 54, 0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-intro,
+    .learning-path,
+    .resource-links { padding: clamp(26px, 4vw, 38px); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { font-family: "Literata", serif; letter-spacing: -0.03em; }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      max-width: 12ch;
+    }
+
+    h2 { font-size: 1.55rem; margin-bottom: 12px; }
+    h3 { font-size: 1.18rem; margin-bottom: 10px; }
+
+    p, li { color: var(--muted); line-height: 1.8; }
+    .intro-copy { max-width: 64ch; }
+
+    .learning-path ol {
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .topic-card {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .topic-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: rgba(223, 233, 227, 0.72);
+      color: var(--accent-strong);
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .topic-card ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .resource-copy { max-width: 46ch; }
+    .resource-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 0 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #f8fbf9; }
+    .btn-primary:hover { background: var(--accent-strong); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(47, 110, 98, 0.18);
+    }
+
+    .site-footer { padding-bottom: 40px; color: var(--muted); font-size: 0.9rem; }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .topic-grid { grid-template-columns: 1fr; }
+      .resource-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+        width: min(100% - 24px, 1120px);
+      }
+      .page-shell { padding: 28px 0 56px; }
+      .page-intro, .learning-path, .topic-card, .resource-links {
+        border-radius: 24px;
+        padding: 22px;
+      }
+      .btn { width: 100%; }
+      .resource-actions { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-intro">
+      <span class="eyebrow">Pusat Materi</span>
+      <h1>Materi Informatika SMP</h1>
+      <p class="intro-copy">
+        Mulai dari konsep paling dasar lalu lanjut ke topik yang lebih menantang. Halaman ini
+        dibuat sebagai pintu masuk utama agar siswa tidak bingung memilih materi lebih dulu.
+      </p>
+    </section>
+
+    <section class="learning-path">
+      <span class="eyebrow">Jalur Belajar Disarankan</span>
+      <h2>Urutan yang enak diikuti</h2>
+      <p>
+        Jika baru mulai, pakai urutan ini supaya istilah dan contoh yang muncul di buku saku atau
+        kisi-kisi terasa lebih masuk akal saat dibaca.
+      </p>
+      <ol>
+        <li>Berpikir Komputasional</li>
+        <li>Algoritma dan Flowchart</li>
+        <li>Logika Dasar dan Boolean</li>
+        <li>Sistem Bilangan dan Representasi Data</li>
+        <li>Pengenalan AI untuk SMP</li>
+      </ol>
+    </section>
+
+    <section class="topic-grid">
+      <article class="topic-card">
+        <span class="topic-meta">Dasar • 8 menit baca</span>
+        <h3>Berpikir Komputasional</h3>
+        <p>Belajar memecah masalah, mengenali pola, memilih informasi penting, lalu menyusun solusi langkah demi langkah.</p>
+        <ul>
+          <li>Contoh masalah sehari-hari</li>
+          <li>Empat pilar utama</li>
+          <li>Cara berpikir yang runtut</li>
+        </ul>
+      </article>
+      <article class="topic-card">
+        <span class="topic-meta">Dasar • 10 menit baca</span>
+        <h3>Algoritma dan Flowchart</h3>
+        <p>Memahami urutan instruksi dan cara menggambarkannya agar orang lain bisa mengikuti logika solusi yang sama.</p>
+        <ul>
+          <li>Urutan langkah yang jelas</li>
+          <li>Simbol flowchart sederhana</li>
+          <li>Contoh dari aktivitas harian</li>
+        </ul>
+      </article>
+      <article class="topic-card">
+        <span class="topic-meta">Dasar • 8 menit baca</span>
+        <h3>Logika Dasar dan Boolean</h3>
+        <p>Memahami konsep benar dan salah yang dipakai komputer saat membuat keputusan melalui aturan logika sederhana.</p>
+        <ul>
+          <li>AND, OR, dan NOT</li>
+          <li>Keputusan if-else</li>
+          <li>Latihan pola pikir logis</li>
+        </ul>
+      </article>
+      <article class="topic-card">
+        <span class="topic-meta">Menengah • 12 menit baca</span>
+        <h3>Sistem Bilangan dan Representasi Data</h3>
+        <p>Belajar bagaimana angka, teks, gambar, dan data lain disimpan dalam bentuk yang bisa dipahami komputer.</p>
+        <ul>
+          <li>Desimal dan biner</li>
+          <li>ASCII dan data digital</li>
+          <li>Hubungan data dengan perangkat</li>
+        </ul>
+      </article>
+      <article class="topic-card">
+        <span class="topic-meta">Pengenalan • 10 menit baca</span>
+        <h3>Pengenalan AI untuk SMP</h3>
+        <p>Mengenal AI dari contoh yang dekat dengan kehidupan siswa, sekaligus belajar berpikir kritis soal manfaat dan risikonya.</p>
+        <ul>
+          <li>Contoh AI sehari-hari</li>
+          <li>Perbedaan aturan biasa dan machine learning</li>
+          <li>Bias, hoaks, dan penggunaan bijak</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="resource-links">
+      <div class="resource-copy">
+        <span class="eyebrow">Lanjutkan belajar</span>
+        <h2>Pilih format yang paling cocok</h2>
+        <p>
+          Jika ingin membaca materi panjang, buka buku saku. Jika ingin melihat kisi-kisi atau
+          materi pendukung yang lebih terstruktur, lanjut ke halaman soal dan kisi-kisi.
+        </p>
+      </div>
+      <div class="resource-actions">
+        <a class="btn btn-primary" href="soal-kodingdanAI.html">Baca Buku Saku Lengkap</a>
+        <a class="btn btn-secondary" href="demo.html">Buka Kisi-Kisi dan Materi Pendukung</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Pusat materi ini disusun sebagai langkah awal agar siswa punya urutan belajar yang lebih jelas sebelum masuk ke bacaan yang lebih panjang.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
