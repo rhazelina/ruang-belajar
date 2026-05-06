@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Materi IPA SMP | Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef3ef;
+      --surface: rgba(255, 255, 255, 0.9);
+      --line: rgba(39, 69, 63, 0.12);
+      --text: #213126;
+      --muted: #587067;
+      --accent: #2f6e62;
+      --accent-strong: #1f5148;
+      --accent-soft: #dceae3;
+      --section-soft: rgba(215, 233, 228, 0.62);
+      --section-strong: #274c55;
+      --shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(79, 131, 128, 0.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(106, 162, 151, 0.14), transparent 22%),
+        linear-gradient(180deg, #f8fbf8 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(238, 243, 239, 0.9);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header-inner,
+    .mobile-nav,
+    .page-shell,
+    .site-footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      padding: 8px;
+      background: linear-gradient(180deg, #ffffff, #eef4ef);
+      border: 1px solid rgba(47, 110, 98, 0.16);
+      box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
+    }
+
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .mobile-nav[data-open="true"] { display: grid; }
+
+    .page-shell {
+      padding: 48px 0 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .page-intro,
+    .class-section,
+    .resource-links {
+      background: var(--surface);
+      border: 1px solid rgba(39, 69, 63, 0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-intro,
+    .class-section,
+    .resource-links {
+      padding: clamp(26px, 4vw, 38px);
+    }
+
+    .eyebrow,
+    .section-tag,
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { font-family: "Literata", serif; letter-spacing: -0.03em; }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.04;
+      margin-bottom: 16px;
+      max-width: 12ch;
+    }
+
+    h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    h3 { font-size: 1.18rem; margin-bottom: 10px; }
+
+    p, li { color: var(--muted); line-height: 1.8; }
+
+    .intro-copy {
+      max-width: 64ch;
+      margin-bottom: 18px;
+    }
+
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .intro-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(39, 69, 63, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-tag {
+      background: var(--section-soft);
+      color: var(--section-strong);
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+
+    .section-copy {
+      max-width: 54ch;
+    }
+
+    .section-copy p { font-size: 0.95rem; }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(39, 69, 63, 0.08);
+      border-radius: 24px;
+    }
+
+    .card-tag {
+      background: rgba(220, 234, 227, 0.84);
+      color: var(--accent-strong);
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .subject-card ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .resource-copy { max-width: 46ch; }
+    .resource-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 0 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #f8fbf9; }
+    .btn-primary:hover { background: var(--accent-strong); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(47, 110, 98, 0.18);
+    }
+
+    .site-footer {
+      padding-bottom: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .subject-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .resource-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .page-shell { padding: 28px 0 56px; }
+
+      .page-intro, .class-section, .subject-card, .resource-links {
+        border-radius: 24px;
+        padding: 22px;
+      }
+
+      .subject-grid { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .resource-actions { width: 100%; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-intro">
+      <span class="eyebrow">Materi Sains</span>
+      <h1>Materi IPA SMP</h1>
+      <p class="intro-copy">
+        Halaman ini merangkum materi asesmen IPA secara padat untuk kelas VII sampai IX.
+        Semua topik tetap dibuat ringkas agar mudah dipindai saat belajar mandiri di HP
+        maupun desktop.
+      </p>
+      <div class="intro-meta">
+        <span class="intro-pill">Kelas VII, VIII, IX</span>
+        <span class="intro-pill">Biologi, Fisika, Kimia</span>
+        <span class="intro-pill">Format ringkas per kelompok materi</span>
+      </div>
+    </section>
+
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Kelas VII</span>
+          <h2>Fondasi IPA awal</h2>
+          <p>Kelompok materi awal berfokus pada pengenalan makhluk hidup, pengukuran dasar, serta perubahan zat.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card">
+          <span class="card-tag">Biologi dan Ekologi</span>
+          <h3>Makhluk hidup dan lingkungan</h3>
+          <ul>
+            <li><strong>Identifikasi makhluk hidup:</strong> Mengklasifikasikan organisme ke dalam kingdom yang tepat berdasarkan data ciri morfologi dan fisiologi.</li>
+            <li><strong>Ekologi:</strong> Mengklasifikasikan komponen biotik dan abiotik berdasarkan data hasil observasi ekosistem sawah.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Fisika dan Pengukuran</span>
+          <h3>Dasar sains dan kalor</h3>
+          <ul>
+            <li><strong>Hakikat ilmu sains dan metode ilmiah:</strong> Menganalisis jumlah anak timbangan pada neraca sama lengan agar posisinya seimbang berdasarkan informasi yang diberikan.</li>
+            <li><strong>Suhu, kalor, dan pemuaian:</strong> Menganalisis grafik suhu dan waktu terkait besar energi kalor yang dibutuhkan untuk proses kenaikan suhu dan perubahan wujud.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Kimia Dasar</span>
+          <h3>Zat dan perubahannya</h3>
+          <ul>
+            <li><strong>Zat dan perubahannya:</strong> Menentukan pernyataan yang paling tepat mengenai perubahan bentuk dan volume zat dari perlakuan berbeda pada tiga wujud zat.</li>
+            <li><strong>Zat dan perubahannya:</strong> Menentukan jenis perubahan yang terjadi berdasarkan penyajian tabel dan data.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Kelas VIII</span>
+          <h2>Pemahaman sistem dan mekanika</h2>
+          <p>Materi kelas VIII bergerak dari struktur tubuh makhluk hidup ke usaha, gelombang, dan klasifikasi materi.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card">
+          <span class="card-tag">Biologi</span>
+          <h3>Sel dan sistem tubuh</h3>
+          <ul>
+            <li><strong>Sel hewan dan sel tumbuhan:</strong> Menganalisis perbedaan ciri-ciri sel untuk menentukan jenis sel dengan tepat.</li>
+            <li><strong>Sistem peredaran darah:</strong> Menentukan fungsi bagian jantung berdasarkan perbedaan struktur hasil pengamatan.</li>
+            <li><strong>Sistem peredaran darah:</strong> Mengidentifikasi ciri dan fungsi pembuluh darah pada sistem peredaran darah manusia.</li>
+            <li><strong>Sistem pernapasan:</strong> Menganalisis hubungan kerja otot antar tulang rusuk dan perubahan volume rongga dada saat inspirasi dengan tepat.</li>
+            <li><strong>Sistem pencernaan:</strong> Menganalisis proses pencernaan mekanik dan kimiawi serta penyerapan zat makanan pada organ manusia.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Fisika</span>
+          <h3>Mekanika dan gelombang</h3>
+          <ul>
+            <li><strong>Usaha, energi, pesawat sederhana:</strong> Menganalisis resultan gaya, usaha, dan perpindahan berdasarkan informasi gaya yang bekerja.</li>
+            <li><strong>Usaha, energi, pesawat sederhana:</strong> Menganalisis pengaruh panjang bidang miring terhadap gaya yang diberikan dan keuntungan mekaniknya.</li>
+            <li><strong>Getaran, gelombang, cahaya:</strong> Menentukan sifat bayangan dan perbesaran bayangan pada percobaan cermin cekung.</li>
+            <li><strong>Getaran, gelombang, cahaya:</strong> Menganalisis karakteristik, panjang gelombang, jumlah gelombang, dan cepat rambat pada gelombang transversal.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Kimia</span>
+          <h3>Materi dan pengelompokan</h3>
+          <ul>
+            <li><strong>Unsur, senyawa, atau campuran:</strong> Mengelompokkan unsur, senyawa, dan campuran berdasarkan beberapa pernyataan yang disajikan.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Kelas IX</span>
+          <h2>Analisis sistem, energi, dan lingkungan</h2>
+          <p>Bagian akhir menekankan sistem tubuh, tekanan dan listrik, serta isu lingkungan dan bioteknologi.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card">
+          <span class="card-tag">Biologi</span>
+          <h3>Reproduksi, saraf, ekskresi, dan genetika</h3>
+          <ul>
+            <li><strong>Pertumbuhan dan perkembangan:</strong> Menarik kesimpulan tentang perbedaan perubahan fisik pubertas laki-laki dan perempuan serta urutan pertumbuhan dan perkembangan pada peristiwa manusia.</li>
+            <li><strong>Sistem saraf pada manusia:</strong> Menentukan peran otak besar dan otak kecil serta memilih pernyataan yang tepat mengenai fungsi neuron, otak, dan sumsum tulang belakang.</li>
+            <li><strong>Sistem reproduksi manusia:</strong> Menentukan fungsi setiap bagian organ reproduksi perempuan dari gambar dan kebenaran pernyataan tentang fungsi organ reproduksi.</li>
+            <li><strong>Sistem ekskresi:</strong> Menganalisis mekanisme homeostasis saat cuaca panas dan memilih pernyataan yang benar terkait fungsi organ ekskresi.</li>
+            <li><strong>Pewarisan sifat:</strong> Mengidentifikasi kemungkinan fenotipe keturunan dan menentukan pernyataan benar tentang gen, alel, genotipe, fenotipe, serta persilangan sederhana.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Fisika</span>
+          <h3>Tekanan, listrik, dan magnet</h3>
+          <ul>
+            <li><strong>Tekanan:</strong> Menentukan tekanan ban mobil, menganalisis hukum Pascal pada pompa hidrolik, tekanan hidrostatis, luas permukaan, tekanan balok, serta prinsip hukum Archimedes.</li>
+            <li><strong>Listrik, magnet, dan sumber energi alternatif:</strong> Menganalisis energi listrik dan biaya, menentukan jenis dan tegangan trafo, muatan listrik, arus, gaya Lorentz, hukum Coulomb, hambatan pengganti, dan sifat kemagnetan.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Isu Lanjutan</span>
+          <h3>Lingkungan, bioteknologi, dan kimia lanjutan</h3>
+          <ul>
+            <li><strong>Bioteknologi:</strong> Menentukan alasan proses fermentasi termasuk bioteknologi konvensional dan perbedaannya dengan modern, serta menjelaskan pemanfaatan mikroorganisme.</li>
+            <li><strong>Isu-isu lingkungan:</strong> Menganalisis penyebab dan upaya menanggulangi pemanasan global, dampak deforestasi hutan tropis Sumatera, serta aktivitas yang berdampak positif atau negatif pada lingkungan.</li>
+            <li><strong>Reaksi kimia:</strong> Menguraikan jumlah atom dari gas karbon dioksida dan senyawa glukosa dari deskripsi proses fotosintesis.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-links">
+      <div class="resource-copy">
+        <span class="eyebrow">Lanjutkan belajar</span>
+        <h2>Pilih jalur berikutnya</h2>
+        <p>
+          Jika ingin pindah ke mapel lain, kembali ke pusat materi. Jika ingin melihat halaman
+          pendukung lain yang sudah ada di Luo-Learn, lanjutkan ke kisi-kisi atau buku saku.
+        </p>
+      </div>
+      <div class="resource-actions">
+        <a class="btn btn-primary" href="materi.html">Kembali ke Pusat Materi</a>
+        <a class="btn btn-secondary" href="demo.html">Buka Kisi-Kisi Lain</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ringkasan IPA ini disusun untuk membantu siswa memetakan materi per kelas tanpa mengubah inti indikator belajar dari sumber aslinya.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
