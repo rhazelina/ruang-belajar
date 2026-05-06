@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Materi PJOK dan Seni Budaya | Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4eee8;
+      --surface: rgba(255, 255, 255, 0.9);
+      --line: rgba(69, 56, 52, 0.12);
+      --text: #2b2825;
+      --muted: #695f59;
+      --accent: #875d49;
+      --accent-strong: #6e4738;
+      --accent-soft: #efe1d9;
+      --art-soft: rgba(244, 222, 233, 0.62);
+      --art-strong: #86566f;
+      --sport-soft: rgba(251, 224, 198, 0.7);
+      --sport-strong: #9b6338;
+      --shadow: 0 24px 60px rgba(45, 35, 31, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201, 124, 157, 0.12), transparent 22%),
+        radial-gradient(circle at top right, rgba(226, 158, 101, 0.12), transparent 24%),
+        linear-gradient(180deg, #fbf7f3 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(244, 238, 232, 0.9);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-header-inner,
+    .mobile-nav,
+    .page-shell,
+    .site-footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      padding: 8px;
+      background: linear-gradient(180deg, #ffffff, #f5eee8);
+      border: 1px solid rgba(135, 93, 73, 0.16);
+      box-shadow: 0 10px 24px rgba(135, 93, 73, 0.1);
+    }
+
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+
+    .desktop-nav a,
+    .mobile-nav a {
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover,
+    .mobile-nav a:hover,
+    .desktop-nav a[aria-current="page"],
+    .mobile-nav a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: var(--text);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+
+    .mobile-nav[data-open="true"] { display: grid; }
+
+    .page-shell {
+      padding: 48px 0 72px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .page-intro,
+    .subject-section,
+    .resource-links {
+      background: var(--surface);
+      border: 1px solid rgba(69, 56, 52, 0.08);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .page-intro,
+    .subject-section,
+    .resource-links {
+      padding: clamp(26px, 4vw, 38px);
+    }
+
+    .eyebrow,
+    .section-tag,
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { font-family: "Literata", serif; letter-spacing: -0.03em; }
+
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 3.7rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      max-width: 13ch;
+    }
+
+    h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    h3 { font-size: 1.16rem; margin-bottom: 10px; }
+    p, li { color: var(--muted); line-height: 1.8; }
+
+    .intro-copy {
+      max-width: 64ch;
+      margin-bottom: 18px;
+    }
+
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .intro-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(69, 56, 52, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-copy {
+      max-width: 56ch;
+    }
+
+    .section-copy p { font-size: 0.95rem; }
+
+    .section-tag {
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+
+    .subject-section-art .section-tag {
+      background: var(--art-soft);
+      color: var(--art-strong);
+    }
+
+    .subject-section-sport .section-tag {
+      background: var(--sport-soft);
+      color: var(--sport-strong);
+    }
+
+    .callout {
+      margin-bottom: 22px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(244, 222, 233, 0.64), rgba(255, 255, 255, 0.92));
+      border: 1px solid rgba(134, 86, 111, 0.12);
+    }
+
+    .callout-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--art-strong);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .subject-card {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(69, 56, 52, 0.08);
+      border-radius: 24px;
+    }
+
+    .subject-section-art .subject-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(252, 244, 248, 0.98));
+    }
+
+    .subject-section-sport .subject-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 239, 0.98));
+    }
+
+    .card-tag {
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .subject-section-art .card-tag {
+      background: rgba(244, 222, 233, 0.84);
+      color: var(--art-strong);
+    }
+
+    .subject-section-sport .card-tag {
+      background: rgba(251, 224, 198, 0.84);
+      color: var(--sport-strong);
+    }
+
+    .subject-card ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .resource-copy { max-width: 46ch; }
+    .resource-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 0 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #fdf9f7; }
+    .btn-primary:hover { background: var(--accent-strong); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(135, 93, 73, 0.18);
+    }
+
+    .site-footer {
+      padding-bottom: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .resource-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .page-shell { padding: 28px 0 56px; }
+
+      .page-intro, .subject-section, .subject-card, .resource-links {
+        border-radius: 24px;
+        padding: 22px;
+      }
+
+      .subject-grid { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .resource-actions { width: 100%; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-intro">
+      <span class="eyebrow">Materi Ringkas</span>
+      <h1>PJOK dan Seni Budaya</h1>
+      <p class="intro-copy">
+        Halaman ini menggabungkan dua rumpun materi yang sumbernya sudah kamu siapkan:
+        Seni Budaya untuk penguatan konsep visual dan PJOK untuk penguatan materi praktik,
+        aturan, serta kebugaran kelas IX.
+      </p>
+      <div class="intro-meta">
+        <span class="intro-pill">Seni Budaya dan PJOK</span>
+        <span class="intro-pill">Format padat per kelompok topik</span>
+        <span class="intro-pill">Siap dibaca di mobile</span>
+      </div>
+    </section>
+
+    <section class="subject-section subject-section-art">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Seni Budaya</span>
+          <h2>Seni rupa dan pemahaman karya visual</h2>
+          <p>Bagian ini merangkum teori dasar, perspektif, poster, ragam hias, karya tiga dimensi, dan pameran.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <span class="callout-label">Capaian akhir fase</span>
+        <p>Peserta didik mampu menuangkan pengalaman secara visual sebagai ekspresi kreatif dengan penguasaan ruang, proporsi, dan gestur, baik secara mandiri maupun berkelompok.</p>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card">
+          <span class="card-tag">Konsep Dasar</span>
+          <h3>Teori dan istilah awal</h3>
+          <ul>
+            <li>Mampu menjelaskan pengertian seni.</li>
+            <li>Mampu menjelaskan pengertian tipografi dan logo.</li>
+            <li>Mampu menjelaskan prinsip seni rupa.</li>
+            <li>Mampu menjelaskan teknik gambar ilustrasi.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Perspektif dan Poster</span>
+          <h3>Ruang visual dan pesan</h3>
+          <ul>
+            <li>Mampu menjelaskan gejala dan hukum perspektif.</li>
+            <li>Mampu menjelaskan tema poster.</li>
+            <li>Mampu menjelaskan unsur utama poster.</li>
+            <li>Mampu menjelaskan konsep membuat poster.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Ragam Hias</span>
+          <h3>Ornamen dan motif daerah</h3>
+          <ul>
+            <li>Mampu menyebutkan jenis-jenis ornamen.</li>
+            <li>Mampu memberikan contoh motif ragam hias daerah.</li>
+            <li>Mampu menghubungkan ragam hias dengan karakter karya visual.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Karya Tiga Dimensi</span>
+          <h3>Lukis, patung, dan pameran</h3>
+          <ul>
+            <li>Mampu menyebutkan contoh benda tiga dimensi dan karya tiga dimensi.</li>
+            <li>Mampu menjelaskan gaya seni lukis dan tema seni lukis.</li>
+            <li>Mampu menyebutkan fungsi patung.</li>
+            <li>Mampu menjelaskan pengertian dan fungsi pameran.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="subject-section subject-section-sport">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">PJOK</span>
+          <h2>Permainan, teknik dasar, dan kebugaran</h2>
+          <p>Materi PJOK tetap dipertahankan padat sesuai sumber, dengan fokus pada kelas IX dan ragam olahraga inti.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card">
+          <span class="card-tag">Permainan Bola</span>
+          <h3>Bola besar dan kecil</h3>
+          <ul>
+            <li><strong>Bola basket:</strong> Menganalisis gerak spesifik, kombinasi passing, dribble, low impact, dan kerja sama tim.</li>
+            <li><strong>Sepak bola:</strong> Menganalisis offside, teknik menyundul, menghentikan bola, serta teknik melewati dan mengumpan.</li>
+            <li><strong>Bola voli:</strong> Menganalisis passing bawah, peran libero, posisi penerima servis, block, dan membangun serangan.</li>
+            <li><strong>Kasti:</strong> Menyebutkan kesempatan pukulan dan menjelaskan cara bermain kasti.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Atletik dan Bela Diri</span>
+          <h3>Sprint, lompat jauh, pencak silat</h3>
+          <ul>
+            <li><strong>Lari jarak pendek:</strong> Menjelaskan posisi badan saat sprint, start jongkok, dan aturan perlombaan lari jarak pendek.</li>
+            <li><strong>Lompat jauh:</strong> Menyebutkan jauh lompatan menurut peraturan, menganalisis awalan, teknik mendarat, dan situasi perlombaan.</li>
+            <li><strong>Pencak silat:</strong> Menjelaskan tahapan dalam pencak silat dan sikap dasar untuk melakukan gerakan.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Senam dan Renang</span>
+          <h3>Koordinasi dan keselamatan</h3>
+          <ul>
+            <li><strong>Senam lantai:</strong> Menyebutkan tumpuan saat kayang, cara melakukan roll depan, dan keselamatan saat senam lantai.</li>
+            <li><strong>Senam berirama:</strong> Menjelaskan langkah kaki pada senam berirama.</li>
+            <li><strong>Renang gaya dada:</strong> Menyebutkan koordinasi gerakan lengan, kaki, pernapasan, dan fungsi gerakan tangan.</li>
+          </ul>
+        </article>
+        <article class="subject-card">
+          <span class="card-tag">Kebugaran dan Kesehatan</span>
+          <h3>Pola hidup sehat dan P3K</h3>
+          <ul>
+            <li><strong>Kebugaran jasmani:</strong> Menjelaskan pengertian dan komponen kebugaran jasmani.</li>
+            <li><strong>Pola hidup sehat:</strong> Menjelaskan tidur yang baik, kondisi tubuh saat berolahraga siang hari, pola hidup sehat, dan latihan untuk penderita obesitas.</li>
+            <li><strong>P3K:</strong> Memahami penerapan dan pentingnya P3K dalam kehidupan sehari-hari.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-links">
+      <div class="resource-copy">
+        <span class="eyebrow">Lanjutkan belajar</span>
+        <h2>Pindah mapel atau kembali ke hub</h2>
+        <p>
+          Kamu bisa kembali ke pusat materi untuk buka mapel lain, atau lanjut ke halaman
+          kisi-kisi jika ingin melihat materi pendukung yang sudah lebih terstruktur.
+        </p>
+      </div>
+      <div class="resource-actions">
+        <a class="btn btn-primary" href="materi.html">Kembali ke Pusat Materi</a>
+        <a class="btn btn-secondary" href="demo.html">Lihat Kisi-Kisi Lain</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Halaman ini menyerap materi inti dari sumber PJOK dan Seni Budaya ke sistem Luo-Learn tanpa membawa layout lama yang terpisah dari workspace utama.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
