@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Materi Informatika Kelas 10 | Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef2fb;
+      --surface: rgba(255,255,255,0.92);
+      --line: rgba(30,50,120,0.1);
+      --text: #1a2340;
+      --muted: #4a5880;
+      --accent: #3b5bdb;
+      --accent-strong: #2245c0;
+      --accent-soft: #dde5ff;
+      --section-soft: rgba(200,215,255,0.5);
+      --section-strong: #1e3a8a;
+      --shadow: 0 24px 60px rgba(30,50,120,0.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(100,130,240,0.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(80,110,220,0.12), transparent 22%),
+        linear-gradient(180deg, #f5f8ff 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(238,242,251,0.92);
+      border-bottom: 1px solid var(--line);
+    }
+    .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+      width: min(1120px, calc(100% - 32px)); margin: 0 auto;
+    }
+    .site-header-inner {
+      min-height: 78px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1rem; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 14px; padding: 8px;
+      background: linear-gradient(180deg, #fff, #eef2ff);
+      border: 1px solid rgba(59,91,219,0.16);
+      box-shadow: 0 10px 24px rgba(59,91,219,0.12);
+    }
+    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+    .desktop-nav a, .mobile-nav a {
+      border-radius: 999px; color: var(--muted); font-size: .95rem;
+      font-weight: 600; padding: 10px 14px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .desktop-nav a:hover, .mobile-nav a:hover,
+    .desktop-nav a[aria-current=page], .mobile-nav a[aria-current=page] {
+      background: var(--accent-soft); color: var(--accent-strong);
+    }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; padding: 11px 15px; color: var(--text);
+      font: inherit; font-weight: 700; cursor: pointer;
+    }
+    .mobile-nav {
+      display: none; margin-bottom: 16px; padding: 12px;
+      background: rgba(255,255,255,0.92); border: 1px solid var(--line);
+      border-radius: 24px; box-shadow: var(--shadow);
+      grid-template-columns: 1fr; gap: 4px;
+    }
+    .mobile-nav[data-open=true] { display: grid; }
+    .page-shell { padding: 48px 0 72px; display: grid; gap: 24px; }
+    .page-intro, .class-section, .resource-links {
+      background: var(--surface);
+      border: 1px solid rgba(30,50,120,0.08);
+      border-radius: 30px; box-shadow: var(--shadow);
+    }
+    .page-intro, .class-section, .resource-links { padding: clamp(26px,4vw,38px); }
+    .eyebrow, .section-tag, .card-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 999px; font-weight: 700;
+    }
+    .eyebrow {
+      background: var(--accent-soft); color: var(--accent-strong);
+      padding: 8px 14px; font-size: .82rem; margin-bottom: 18px;
+    }
+    h1, h2, h3 { font-family: "Literata", serif; letter-spacing: -.03em; }
+    h1 { font-size: clamp(2.2rem,4vw,3.8rem); line-height: 1.04; margin-bottom: 16px; max-width: 15ch; }
+    h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    h3 { font-size: 1.18rem; margin-bottom: 10px; }
+    p, li { color: var(--muted); line-height: 1.8; }
+    .intro-copy { max-width: 64ch; margin-bottom: 18px; }
+    .intro-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .intro-pill {
+      padding: 8px 12px; border-radius: 999px;
+      border: 1px solid rgba(30,50,120,0.12);
+      background: rgba(255,255,255,0.78);
+      color: var(--accent-strong); font-size: .82rem; font-weight: 700;
+    }
+    .section-head {
+      display: flex; flex-wrap: wrap; align-items: end;
+      justify-content: space-between; gap: 14px; margin-bottom: 22px;
+    }
+    .section-tag {
+      background: var(--section-soft); color: var(--section-strong);
+      padding: 8px 14px; font-size: .78rem; margin-bottom: 10px;
+    }
+    .section-copy { max-width: 54ch; }
+    .section-copy p { font-size: .95rem; }
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+    .subject-card {
+      padding: 24px; background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(30,50,120,0.08); border-radius: 24px;
+    }
+    .card-tag {
+      background: rgba(200,215,255,0.8); color: var(--accent-strong);
+      padding: 7px 12px; font-size: .78rem; margin-bottom: 14px;
+    }
+    .subject-card ul { padding-left: 18px; display: grid; gap: 10px; margin-top: 12px; }
+    .code-box {
+      margin-top: 14px; background: #1a2340; border-radius: 14px;
+      padding: 14px 16px; overflow-x: auto;
+    }
+    .code-box pre { font-family: "Courier New", monospace; font-size: .8rem; color: #a9c4f5; line-height: 1.7; }
+    .code-box .kw { color: #7dd3fc; }
+    .code-box .fn { color: #86efac; }
+    .code-box .st { color: #fca5a5; }
+    .code-box .cm { color: #6b7ab5; font-style: italic; }
+    .resource-links {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      align-items: center; justify-content: space-between;
+    }
+    .resource-copy { max-width: 46ch; }
+    .resource-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; border-radius: 999px; padding: 0 20px;
+      font-size: .95rem; font-weight: 700;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #f0f4ff; }
+    .btn-primary:hover { background: var(--accent-strong); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(59,91,219,0.2);
+    }
+    .site-footer { padding-bottom: 40px; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 899px) {
+      .desktop-nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .subject-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .resource-links { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+        width: min(100% - 24px, 1120px);
+      }
+      .page-shell { padding: 28px 0 56px; }
+      .page-intro, .class-section, .subject-card, .resource-links {
+        border-radius: 24px; padding: 22px;
+      }
+      .subject-grid { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .resource-actions { width: 100%; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+
+    <!-- INTRO -->
+    <section class="page-intro">
+      <span class="eyebrow">&#x1F4BB; Informatika &mdash; Kurikulum Merdeka</span>
+      <h1>Materi Informatika Kelas 10</h1>
+      <p class="intro-copy">Rangkuman lengkap 8 elemen Informatika Kelas 10 Kurikulum Merdeka. Setiap elemen disajikan ringkas dengan contoh konkret, kode program, dan tip belajar agar mudah dipahami saat belajar mandiri maupun persiapan ujian.</p>
+      <div class="intro-meta">
+        <span class="intro-pill">Kelas 10 SMA/SMK</span>
+        <span class="intro-pill">8 Elemen Utama</span>
+        <span class="intro-pill">Kurikulum Merdeka</span>
+        <span class="intro-pill">Python &amp; C / Aplikasi Perkantoran</span>
+      </div>
+    </section>
+
+    <!-- ELEMEN 1 & 2: BK & TIK -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Elemen 1 &amp; 2</span>
+          <h2>Berpikir Komputasional &amp; TIK</h2>
+          <p>Fondasi logika pemecahan masalah dan keterampilan produktivitas digital menggunakan aplikasi perkantoran modern.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">BK &mdash; Pencarian &amp; Pengurutan</span>
+          <h3>Searching &amp; Sorting</h3>
+          <ul>
+            <li><strong>Linear Search:</strong> Memeriksa elemen satu per satu dari awal hingga akhir. Kompleksitas O(n). Cocok untuk data kecil atau tidak terurut.</li>
+            <li><strong>Binary Search:</strong> Membutuhkan data terurut; membagi dua rentang pencarian tiap langkah. Kompleksitas O(log n). Jauh lebih cepat untuk data besar.</li>
+            <li><strong>Bubble Sort:</strong> Membandingkan pasangan elemen bersebelahan dan menukarnya jika salah urutan. O(n&sup2;) &mdash; sederhana tapi lambat untuk data besar.</li>
+            <li><strong>Selection Sort:</strong> Mencari elemen terkecil lalu menempatkannya di posisi paling depan, diulang hingga semua terurut. O(n&sup2;).</li>
+            <li><strong>Insertion Sort:</strong> Menyisipkan elemen ke posisi yang tepat dalam bagian yang sudah terurut. Efisien untuk data hampir terurut.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">BK &mdash; Struktur Data Linier</span>
+          <h3>Stack &amp; Queue</h3>
+          <ul>
+            <li><strong>Stack (Tumpukan):</strong> Prinsip LIFO (Last In, First Out). Elemen terakhir masuk adalah yang pertama keluar. Operasi utama: <em>push</em> (masuk) dan <em>pop</em> (keluar). Contoh nyata: tombol Undo pada aplikasi, riwayat halaman browser.</li>
+            <li><strong>Queue (Antrean):</strong> Prinsip FIFO (First In, First Out). Elemen pertama masuk adalah yang pertama keluar. Operasi: <em>enqueue</em> (masuk) dan <em>dequeue</em> (keluar). Contoh: antrean cetak dokumen (print queue), sistem tiket online.</li>
+            <li><strong>Deque (Double-ended Queue):</strong> Kombinasi stack dan queue; elemen bisa masuk/keluar dari kedua ujung.</li>
+          </ul>
+          <div class="code-box">
+            <pre><span class="cm"># Stack sederhana di Python</span>
+stack = []
+stack.append(<span class="st">"A"</span>)   <span class="cm"># push</span>
+stack.append(<span class="st">"B"</span>)
+stack.pop()          <span class="cm"># keluar: "B" (LIFO)</span>
+
+<span class="cm"># Queue dengan deque</span>
+<span class="kw">from</span> collections <span class="kw">import</span> deque
+q = deque()
+q.append(<span class="st">"X"</span>)        <span class="cm"># enqueue</span>
+q.popleft()         <span class="cm"># keluar: "X" (FIFO)</span></pre>
+          </div>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">TIK &mdash; Aplikasi Perkantoran</span>
+          <h3>Integrasi &amp; Fitur Lanjut</h3>
+          <ul>
+            <li><strong>Pengolah Kata (Word/Docs):</strong> Fitur lanjut meliputi mail merge untuk surat massal, styles &amp; heading untuk dokumen terstruktur, daftar isi otomatis (TOC), komentar &amp; lacak perubahan untuk kolaborasi.</li>
+            <li><strong>Pengolah Angka (Excel/Sheets):</strong> Fungsi lanjut: VLOOKUP/XLOOKUP, IF bersarang, pivot table untuk analisis data, conditional formatting, pembuatan grafik dinamis.</li>
+            <li><strong>Presentasi (PowerPoint/Slides):</strong> Slide master untuk konsistensi desain, animasi transisi, hyperlink antar slide, embed video/audio, dan kolaborasi real-time.</li>
+            <li><strong>Manajemen Dokumen:</strong> Penggunaan folder dan nama file yang sistematis, version control sederhana, backup ke cloud (Google Drive, OneDrive).</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ELEMEN 3 & 4: SK & JKI -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Elemen 3 &amp; 4</span>
+          <h2>Sistem Komputer &amp; Jaringan Internet</h2>
+          <p>Memahami cara kerja komputer dari dalam, mulai dari komponen perangkat keras hingga bagaimana data berpindah melalui jaringan lokal dan internet global.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">SK &mdash; Perangkat &amp; Sistem</span>
+          <h3>Komponen Sistem Komputer</h3>
+          <ul>
+            <li><strong>CPU (Central Processing Unit):</strong> Otak komputer. Terdiri dari ALU (Arithmetic Logic Unit) untuk kalkulasi, CU (Control Unit) untuk koordinasi, dan register sebagai memori sementara ultra-cepat.</li>
+            <li><strong>Memori:</strong> RAM (Random Access Memory) &mdash; volatile, digunakan saat program berjalan. ROM &mdash; non-volatile, menyimpan firmware/BIOS. Cache (L1/L2/L3) &mdash; lebih cepat dari RAM, lebih dekat ke CPU.</li>
+            <li><strong>Penyimpanan:</strong> HDD (Hard Disk Drive) &mdash; magnetik, kapasitas besar, lambat. SSD (Solid State Drive) &mdash; flash memory, sangat cepat, lebih tahan banting.</li>
+            <li><strong>Sistem Operasi:</strong> Program yang mengelola sumber daya hardware dan menjadi perantara antara pengguna dengan hardware. Contoh: Windows, Linux, macOS, Android.</li>
+            <li><strong>Perangkat I/O:</strong> Input (keyboard, mouse, scanner, mikrofon) dan Output (monitor, printer, speaker).</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">JKI &mdash; Jaringan Dasar</span>
+          <h3>Konsep Jaringan Komputer</h3>
+          <ul>
+            <li><strong>Jenis Jaringan:</strong> LAN (Local Area Network) &mdash; area kecil (rumah/sekolah). WAN (Wide Area Network) &mdash; area luas (antarkota/negara). MAN (Metropolitan Area Network) &mdash; area kota.</li>
+            <li><strong>Topologi Jaringan:</strong> Star (semua terhubung ke switch/hub pusat &mdash; paling umum), Bus (satu kabel utama), Ring (melingkar), Mesh (saling terhubung penuh).</li>
+            <li><strong>Protokol:</strong> TCP/IP adalah protokol utama internet. HTTP/HTTPS untuk web. FTP untuk transfer file. SMTP/POP3/IMAP untuk email.</li>
+            <li><strong>IP Address:</strong> Alamat unik setiap perangkat di jaringan. IPv4 (32-bit, contoh: 192.168.1.1). IPv6 (128-bit, untuk mengatasi keterbatasan IPv4).</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">JKI &mdash; Keamanan Jaringan</span>
+          <h3>Komunikasi Data &amp; Keamanan</h3>
+          <ul>
+            <li><strong>Enkripsi:</strong> Mengubah data asli (plaintext) menjadi data tersembunyi (ciphertext) agar tidak bisa dibaca pihak tak berwenang. HTTPS menggunakan enkripsi TLS/SSL.</li>
+            <li><strong>Firewall:</strong> Sistem yang memfilter lalu lintas jaringan berdasarkan aturan tertentu untuk mencegah akses tidak sah.</li>
+            <li><strong>Ancaman Siber:</strong> Malware (virus, worm, trojan), Phishing (penipuan via email palsu), Ransomware (mengenkripsi data dan meminta tebusan), DDoS (membanjiri server dengan permintaan palsu).</li>
+            <li><strong>Praktik Aman:</strong> Gunakan password kuat + 2FA, perbarui software secara rutin, hindari WiFi publik untuk transaksi penting, backup data berkala.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ELEMEN 5 & 6: AD & AP -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Elemen 5 &amp; 6</span>
+          <h2>Analisis Data &amp; Algoritma Pemrograman</h2>
+          <p>Dari pengolahan data mentah menjadi informasi bermakna, hingga menulis kode program prosedural yang menyelesaikan masalah nyata.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">AD &mdash; Pengolahan Data</span>
+          <h3>Analisis &amp; Visualisasi Data</h3>
+          <ul>
+            <li><strong>Siklus Data:</strong> Pengumpulan &rarr; Pembersihan (cleaning) &rarr; Transformasi &rarr; Analisis &rarr; Visualisasi &rarr; Interpretasi.</li>
+            <li><strong>Statistik Deskriptif:</strong> Mean (rata-rata), Median (nilai tengah), Modus (nilai paling sering muncul), Range (selisih max-min), Standar Deviasi (sebaran data).</li>
+            <li><strong>Visualisasi:</strong> Grafik batang (perbandingan kategori), grafik garis (tren waktu), pie chart (proporsi), scatter plot (korelasi dua variabel), histogram (distribusi frekuensi).</li>
+            <li><strong>Spreadsheet untuk Analisis:</strong> Fungsi AVERAGE, MEDIAN, MODE, STDEV, COUNTIF, SUMIF. Pivot table untuk agregasi data multidimensi.</li>
+            <li><strong>Interpretasi:</strong> Menarik kesimpulan yang didukung data; membedakan korelasi dan kausalitas.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">AP &mdash; Algoritma</span>
+          <h3>Dasar-Dasar Pemrograman</h3>
+          <ul>
+            <li><strong>Variabel &amp; Tipe Data:</strong> Integer, Float, String, Boolean. Penamaan variabel harus deskriptif (snake_case di Python, camelCase di C).</li>
+            <li><strong>Percabangan:</strong> if, elif, else &mdash; mengeksekusi blok kode berdasarkan kondisi true/false.</li>
+            <li><strong>Perulangan:</strong> for (jumlah iterasi diketahui), while (berulang selama kondisi terpenuhi). Hindari infinite loop.</li>
+            <li><strong>Fungsi/Prosedur:</strong> Blok kode yang dapat dipanggil berulang dengan nama. Meningkatkan modularitas dan keterbacaan kode.</li>
+            <li><strong>Array/List:</strong> Menyimpan banyak nilai dalam satu variabel, diakses via indeks (dimulai dari 0).</li>
+          </ul>
+          <div class="code-box">
+            <pre><span class="cm"># Contoh program Python sederhana</span>
+<span class="kw">def</span> <span class="fn">cek_nilai</span>(nilai):
+    <span class="kw">if</span> nilai >= 90:
+        <span class="kw">return</span> <span class="st">"A"</span>
+    <span class="kw">elif</span> nilai >= 75:
+        <span class="kw">return</span> <span class="st">"B"</span>
+    <span class="kw">else</span>:
+        <span class="kw">return</span> <span class="st">"C"</span>
+
+data = [85, 92, 70, 88, 95]
+<span class="kw">for</span> n <span class="kw">in</span> data:
+    <span class="fn">print</span>(n, <span class="st">"->"</span>, <span class="fn">cek_nilai</span>(n))</pre>
+          </div>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">AP &mdash; Bahasa C</span>
+          <h3>Pemrograman Prosedural C</h3>
+          <ul>
+            <li><strong>Struktur Program C:</strong> Setiap program diawali dengan <code>#include</code> untuk library, fungsi <code>main()</code> sebagai titik masuk, dan setiap pernyataan diakhiri titik koma.</li>
+            <li><strong>Tipe Data C:</strong> int (bilangan bulat), float/double (desimal), char (karakter tunggal), void (tidak mengembalikan nilai).</li>
+            <li><strong>Input/Output:</strong> printf() untuk menampilkan output, scanf() untuk membaca input pengguna. Format specifier: %d (int), %f (float), %c (char), %s (string).</li>
+            <li><strong>Pointer:</strong> Variabel yang menyimpan alamat memori variabel lain. Konsep dasar untuk memahami alokasi memori dinamis.</li>
+          </ul>
+          <div class="code-box">
+            <pre><span class="cm">// Program C sederhana</span>
+#<span class="kw">include</span> &lt;<span class="st">stdio.h</span>&gt;
+
+<span class="kw">int</span> <span class="fn">jumlah</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a + b;
+}
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> x = 5, y = 3;
+    <span class="fn">printf</span>(<span class="st">"%d\n"</span>, <span class="fn">jumlah</span>(x, y));
+    <span class="kw">return</span> 0;
+}</pre>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ELEMEN 7 & 8: DSI & PLB -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Elemen 7 &amp; 8</span>
+          <h2>Dampak Sosial &amp; Praktik Lintas Bidang</h2>
+          <p>Memahami tanggung jawab etis pengguna teknologi dan menerapkan seluruh pengetahuan informatika dalam proyek kolaboratif yang memecahkan masalah nyata.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">DSI &mdash; Etika &amp; Hukum</span>
+          <h3>Etika Penggunaan Teknologi</h3>
+          <ul>
+            <li><strong>Hak Kekayaan Intelektual:</strong> Hak cipta (copyright) melindungi karya digital. Menggunakan karya orang lain tanpa izin adalah pelanggaran. Pahami lisensi Creative Commons dan Open Source.</li>
+            <li><strong>Privasi Data:</strong> Data pribadi (nama, alamat, nomor HP, foto) harus dijaga kerahasiaannya. UU ITE di Indonesia mengatur perlindungan data digital.</li>
+            <li><strong>Hukum Siber (Cyber Law):</strong> UU No. 11 Tahun 2008 tentang ITE dan perubahannya mengatur kejahatan digital: penyebaran hoaks, konten negatif, akses ilegal, dan penipuan online.</li>
+            <li><strong>Netiquette:</strong> Etika berinternet &mdash; tidak menyebar hoaks, tidak cyberbullying, menghargai privasi orang lain, menggunakan bahasa santun di ruang digital.</li>
+            <li><strong>Sejarah Komputer:</strong> Generasi 1 (tabung vakum, 1940-an) &rarr; Gen 2 (transistor) &rarr; Gen 3 (IC/chip) &rarr; Gen 4 (microprocessor) &rarr; Gen 5 (AI &amp; komputasi awan).</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">DSI &mdash; Keamanan &amp; Digital</span>
+          <h3>Keamanan Data &amp; Literasi Digital</h3>
+          <ul>
+            <li><strong>Identitas Digital:</strong> Jejak digital bersifat permanen &mdash; setiap unggahan, komentar, dan aktivitas online dapat tersimpan dan berdampak jangka panjang pada reputasi.</li>
+            <li><strong>Hoaks &amp; Disinformasi:</strong> Cara verifikasi: cek sumber terpercaya (BNPB, Kemkominfo, media nasional), gunakan reverse image search, perhatikan tanggal dan konteks berita.</li>
+            <li><strong>Social Engineering:</strong> Teknik manipulasi psikologis untuk mencuri informasi sensitif. Contoh: phishing email, smishing (via SMS), vishing (via telepon).</li>
+            <li><strong>Kesehatan Digital:</strong> Kelola waktu layar, istirahat dari perangkat (digital detox), jaga postur saat menggunakan komputer, waspadai dampak psikologis media sosial.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">PLB &mdash; Proyek Kolaboratif</span>
+          <h3>Praktik Lintas Bidang</h3>
+          <ul>
+            <li><strong>Tujuan PLB:</strong> Mengintegrasikan semua elemen informatika untuk menyelesaikan permasalahan nyata yang relevan dengan kehidupan siswa dan masyarakat.</li>
+            <li><strong>Tahapan Proyek:</strong> (1) Identifikasi masalah, (2) Perencanaan solusi, (3) Pembagian tugas tim, (4) Implementasi menggunakan tools informatika, (5) Uji coba &amp; evaluasi, (6) Presentasi hasil.</li>
+            <li><strong>Contoh Proyek:</strong> Membuat aplikasi sederhana pencatat nilai (Python), membuat website informasi sekolah (HTML/CSS), menganalisis data survei menggunakan spreadsheet, atau merancang sistem jaringan sekolah sederhana.</li>
+            <li><strong>Kolaborasi &amp; Dokumentasi:</strong> Gunakan platform seperti Google Workspace, GitHub, atau Notion untuk kerja tim. Dokumentasi proyek sangat penting untuk evaluasi.</li>
+            <li><strong>Computational Thinking dalam PLB:</strong> Decomposition (pecah masalah), Pattern Recognition (kenali pola), Abstraction (fokus inti), Algorithm Design (rancang solusi).</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- RESOURCE -->
+    <section class="resource-links">
+      <div class="resource-copy">
+        <span class="eyebrow">Lanjutkan belajar</span>
+        <h2>Pilih jalur berikutnya</h2>
+        <p>Kembali ke pusat materi untuk mapel lain, atau buka buku saku Informatika untuk pembahasan lebih mendalam lengkap dengan latihan soal.</p>
+      </div>
+      <div class="resource-actions">
+        <a class="btn btn-primary" href="materi.html">Kembali ke Pusat Materi</a>
+        <a class="btn btn-secondary" href="soal-kodingdanAI.html">Buka Buku Saku</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Materi Informatika Kelas 10 ini disusun berdasarkan 8 elemen Kurikulum Merdeka. Konten mencakup teori, contoh kode, dan penerapan praktis untuk mempersiapkan siswa menghadapi asesmen dan dunia digital.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
