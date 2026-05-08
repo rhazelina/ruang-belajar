@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Materi Bahasa Arab SMP | Luo-Learn</title>
+  <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --surface: rgba(255,255,255,0.9);
+      --line: rgba(120,80,20,0.12);
+      --text: #3a2a10;
+      --muted: #7a5c30;
+      --accent: #b07d2e;
+      --accent-strong: #7a5218;
+      --accent-soft: #f0deb0;
+      --section-soft: rgba(240,222,176,0.55);
+      --section-strong: #5c3d10;
+      --shadow: 0 24px 60px rgba(90,60,10,0.09);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{min-height:100vh;font-family:"Plus Jakarta Sans",sans-serif;color:var(--text);background:radial-gradient(circle at top left,rgba(200,160,60,0.18),transparent 24%),radial-gradient(circle at top right,rgba(180,140,50,0.12),transparent 22%),linear-gradient(180deg,#fdf8f0 0%,var(--bg) 100%);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(245,239,230,0.92);border-bottom:1px solid var(--line)}
+    .site-header-inner,.mobile-nav,.page-shell,.site-footer{width:min(1120px,calc(100% - 32px));margin:0 auto}
+    .site-header-inner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:1rem}
+    .brand-mark{width:42px;height:42px;border-radius:14px;padding:8px;background:linear-gradient(180deg,#fff,#fdf0d5);border:1px solid rgba(176,125,46,0.18);box-shadow:0 10px 24px rgba(176,125,46,0.12)}
+    .desktop-nav{display:flex;align-items:center;gap:8px}
+    .desktop-nav a,.mobile-nav a{border-radius:999px;color:var(--muted);font-size:.95rem;font-weight:600;padding:10px 14px;transition:background .2s ease,color .2s ease}
+    .desktop-nav a:hover,.mobile-nav a:hover,.desktop-nav a[aria-current=page],.mobile-nav a[aria-current=page]{background:var(--accent-soft);color:var(--accent-strong)}
+    .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 15px;color:var(--text);font:inherit;font-weight:700;cursor:pointer}
+    .mobile-nav{display:none;margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);grid-template-columns:1fr;gap:4px}
+    .mobile-nav[data-open=true]{display:grid}
+    .page-shell{padding:48px 0 72px;display:grid;gap:24px}
+    .page-intro,.class-section,.resource-links{background:var(--surface);border:1px solid rgba(120,80,20,0.08);border-radius:30px;box-shadow:var(--shadow)}
+    .page-intro,.class-section,.resource-links{padding:clamp(26px,4vw,38px)}
+    .eyebrow,.section-tag,.card-tag{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700}
+    .eyebrow{background:var(--accent-soft);color:var(--accent-strong);padding:8px 14px;font-size:.82rem;margin-bottom:18px}
+    h1,h2,h3{font-family:"Literata",serif;letter-spacing:-.03em}
+    h1{font-size:clamp(2.2rem,4vw,3.8rem);line-height:1.04;margin-bottom:16px;max-width:14ch}
+    h2{font-size:1.6rem;margin-bottom:12px}
+    h3{font-size:1.18rem;margin-bottom:10px}
+    p,li{color:var(--muted);line-height:1.8}
+    .intro-copy{max-width:64ch;margin-bottom:18px}
+    .intro-meta{display:flex;flex-wrap:wrap;gap:10px}
+    .intro-pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(120,80,20,0.14);background:rgba(255,255,255,0.78);color:var(--accent-strong);font-size:.82rem;font-weight:700}
+    .section-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:14px;margin-bottom:22px}
+    .section-tag{background:var(--section-soft);color:var(--section-strong);padding:8px 14px;font-size:.78rem;margin-bottom:10px}
+    .section-copy{max-width:54ch}
+    .section-copy p{font-size:.95rem}
+    .subject-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .subject-card{padding:24px;background:rgba(255,255,255,0.84);border:1px solid rgba(120,80,20,0.08);border-radius:24px}
+    .card-tag{background:rgba(240,222,176,0.78);color:var(--accent-strong);padding:7px 12px;font-size:.78rem;margin-bottom:14px}
+    .subject-card ul{padding-left:18px;display:grid;gap:10px;margin-top:12px}
+    .tarkib-box{margin-top:14px;background:rgba(240,222,176,0.3);border:1px solid rgba(176,125,46,0.18);border-radius:16px;padding:16px}
+    .tarkib-box p{font-size:.88rem;line-height:1.7}
+    .tarkib-box code{font-family:monospace;background:rgba(176,125,46,0.12);padding:2px 6px;border-radius:6px;font-size:.85em;color:var(--accent-strong)}
+    .validasi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:4px}
+    .validasi-card{padding:20px;background:rgba(255,255,255,0.84);border:1px solid rgba(120,80,20,0.08);border-radius:20px}
+    .validasi-card h3{font-size:1.05rem;margin-bottom:8px}
+    .soal-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(176,125,46,0.12);color:var(--accent-strong);border-radius:999px;font-size:.75rem;font-weight:700;padding:5px 10px;margin-bottom:12px}
+    .resource-links{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+    .resource-copy{max-width:46ch}
+    .resource-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;padding:0 20px;font-size:.95rem;font-weight:700;transition:transform .2s ease,background .2s ease,color .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--accent);color:#fdf8f0}
+    .btn-primary:hover{background:var(--accent-strong)}
+    .btn-secondary{background:transparent;color:var(--text);border:1px solid rgba(176,125,46,0.2)}
+    .site-footer{padding-bottom:40px;color:var(--muted);font-size:.9rem}
+    @media(max-width:899px){.desktop-nav{display:none}.menu-toggle{display:inline-flex}.subject-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.validasi-grid{grid-template-columns:1fr}.resource-links{flex-direction:column;align-items:flex-start}}
+    @media(max-width:640px){.site-header-inner,.mobile-nav,.page-shell,.site-footer{width:min(100% - 24px,1120px)}.page-shell{padding:28px 0 56px}.page-intro,.class-section,.subject-card,.resource-links{border-radius:24px;padding:22px}.subject-grid{grid-template-columns:1fr}.btn{width:100%}.resource-actions{width:100%}h1{max-width:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="./assets/Luocha.png" alt="Logo Luo-Learn">
+        <span>Luo-Learn</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a data-nav href="index.html">Beranda</a>
+        <a data-nav href="materi.html">Materi</a>
+        <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+        <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+        <a data-nav href="about.html">Tentang</a>
+      </nav>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <div id="mobile-nav" class="mobile-nav" data-open="false">
+      <a data-nav href="index.html">Beranda</a>
+      <a data-nav href="materi.html">Materi</a>
+      <a data-nav href="soal-kodingdanAI.html">Buku Saku</a>
+      <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
+      <a data-nav href="about.html">Tentang</a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-intro">
+      <span class="eyebrow">&#x202B;مادة اللغة العربية&#x202C; &mdash; Bahasa Arab</span>
+      <h1>Materi Bahasa Arab SMP</h1>
+      <p class="intro-copy">Rangkuman materi asesmen Bahasa Arab berdasarkan Kisi-Kisi PSAJ tahun ajaran 2025/2026. Mencakup tema kosakata, teks bacaan, tata bahasa (tarkib), dan validasi pernyataan yang disajikan ringkas agar mudah dipelajari mandiri.</p>
+      <div class="intro-meta">
+        <span class="intro-pill">SMP Negeri Lamongan</span>
+        <span class="intro-pill">50 Soal &mdash; PG, PGK, Benar/Salah</span>
+        <span class="intro-pill">Waktu 90 Menit</span>
+        <span class="intro-pill">Tim MGMP Bahasa Arab SMP Lamongan</span>
+      </div>
+    </section>
+
+    <!-- BAGIAN 1: TEMA KOSAKATA & TEKS (PG 1-25) -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Pilihan Ganda &mdash; Soal 1 s/d 25</span>
+          <h2>Tema Kosakata dan Teks Bacaan</h2>
+          <p>Kelompok soal ini menguji kemampuan memahami informasi tersurat, menerjemahkan kosakata, serta mengidentifikasi fakta dari teks bertema kehidupan sehari-hari dan keagamaan.</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 1&ndash;4 &middot; PG</span>
+          <h3>Identitas Diri &amp; Lingkungan</h3>
+          <ul>
+            <li><strong>Informasi tersurat teks:</strong> Membaca teks pendek tentang perkenalan diri, lalu menjawab pertanyaan mengenai nama, alamat, dan nomor telepon yang tertera secara eksplisit.</li>
+            <li><strong>Kosakata kunci:</strong> اِسْمِيْ (namaku), عُنْوَانِيْ (alamatku), رَقْمُ الْهَاتِفِ (nomor telepon), أَنَا مِنْ (saya berasal dari).</li>
+            <li><strong>Tip belajar:</strong> Latih membaca teks dialog pendek dan garis bawahi setiap informasi faktual agar mudah ditemukan saat ujian.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 5&ndash;11 &middot; PG</span>
+          <h3>Hobi &amp; Profesi</h3>
+          <ul>
+            <li><strong>Menerjemahkan kosakata hobi:</strong> القِرَاءَةُ (membaca), السِّبَاحَةُ (berenang), كُرَةُ الْقَدَمِ (sepak bola), الرَّسْمُ (menggambar).</li>
+            <li><strong>Kosakata profesi:</strong> مُعَلِّمٌ (guru), طَبِيبٌ (dokter), مُهَنْدِسٌ (insinyur), فَلَّاحٌ (petani), تَاجِرٌ (pedagang).</li>
+            <li><strong>Tugas profesi:</strong> Memahami deskripsi singkat tugas masing-masing profesi dalam kalimat sederhana berbahasa Arab.</li>
+            <li><strong>Tip belajar:</strong> Hafalkan pasangan Arab-Indonesia untuk setiap hobi dan profesi, lalu buat kartu kilas (flashcard) untuk mempercepat hafalan.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 12&ndash;15 &middot; PG</span>
+          <h3>Kegiatan Sekolah &amp; Jam</h3>
+          <ul>
+            <li><strong>Waktu kegiatan:</strong> Membaca teks jadwal pelajaran dan menjawab pertanyaan tentang jam mulai/selesai. Contoh: الدِّرَاسَةُ تَبْدَأُ فِي السَّاعَةِ السَّابِعَةِ (pelajaran dimulai pukul 7).</li>
+            <li><strong>Fasilitas sekolah:</strong> مَكْتَبَةٌ (perpustakaan), مُخْتَبَرٌ (laboratorium), مَلْعَبٌ (lapangan), فَصْلٌ (kelas).</li>
+            <li><strong>Kosakata waktu:</strong> الآنَ (sekarang), الصَّبَاحُ (pagi), الظُّهْرُ (siang), الْمَسَاءُ (sore).</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 16&ndash;19 &middot; PG</span>
+          <h3>Tahun Baru Hijriyah</h3>
+          <ul>
+            <li><strong>Sejarah kalender Hijriyah:</strong> Ditetapkan pada masa Khalifah Umar bin Khattab sebagai penanda tahun Islam, dihitung sejak peristiwa Hijrah Nabi Muhammad SAW dari Makkah ke Madinah.</li>
+            <li><strong>Urutan 12 bulan Hijriyah:</strong> مُحَرَّمٌ، صَفَرٌ، رَبِيعُ الْأَوَّلُ، رَبِيعُ الثَّانِيْ، جُمَادَى الْأُوْلَى، جُمَادَى الثَّانِيَةُ، رَجَبٌ، شَعْبَانُ، رَمَضَانُ، شَوَّالٌ، ذُوالْقَعْدَةِ، ذُوالْحِجَّةِ.</li>
+            <li><strong>Tokoh pencetus:</strong> Khalifah Umar bin Khattab ra. pada tahun 638 M / 17 H.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 20&ndash;23 &middot; PG</span>
+          <h3>Nuzulul Qur&rsquo;an &amp; Hari Raya</h3>
+          <ul>
+            <li><strong>Nuzulul Qur&rsquo;an:</strong> Wahyu pertama (QS. Al-Alaq: 1-5) turun di Gua Hira, Makkah, pada malam 17 Ramadan. Malaikat Jibril menyampaikannya kepada Nabi Muhammad SAW.</li>
+            <li><strong>Idul Fitri (عِيْدُ الْفِطْرِ):</strong> Dirayakan 1 Syawal setelah selesai puasa Ramadan. Tradisi: shalat Id, zakat fitrah, silaturahmi, dan halal bihalal.</li>
+            <li><strong>Idul Adha (عِيْدُ الْأَضْحَى):</strong> Dirayakan 10 Dzulhijjah, disertai ibadah kurban (qurban) dan pelaksanaan haji di Makkah.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 24&ndash;25 &middot; PG</span>
+          <h3>Khaliqul &lsquo;Alam &mdash; Allah Pencipta Alam</h3>
+          <ul>
+            <li><strong>Konsep:</strong> خَالِقُ الْعَالَمِ artinya Allah sebagai Pencipta seluruh alam semesta, termaktub dalam QS. Al-An&rsquo;am: 102 dan QS. Az-Zumar: 62.</li>
+            <li><strong>Fenomena alam:</strong> Matahari, bulan, bintang, air, dan segala makhluk hidup adalah tanda-tanda (آيَات) kekuasaan Allah.</li>
+            <li><strong>Kosakata kunci:</strong> الْخَالِقُ (Pencipta), الْمَخْلُوقَاتُ (makhluk ciptaan), السَّمَاءُ (langit), الْأَرْضُ (bumi), الشَّمْسُ (matahari).</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BAGIAN 2: PILIHAN GANDA KOMPLEKS (PGK 26-40) -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Pilihan Ganda Kompleks &mdash; Soal 26 s/d 40</span>
+          <h2>Analisis Teks, Profesi &amp; Tata Bahasa</h2>
+          <p>Soal PGK menuntut lebih dari satu jawaban benar. Konsentrasi pada pemahaman mendalam teks, klasifikasi, dan penerapan kaidah tarkib (gramatika Arab).</p>
+        </div>
+      </div>
+      <div class="subject-grid">
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 26&ndash;29 &middot; PGK</span>
+          <h3>Aktivitas Siswa &mdash; Analisis Teks</h3>
+          <ul>
+            <li><strong>Jenis olahraga di sekolah:</strong> كُرَةُ الْقَدَمِ، كُرَةُ السَّلَّةِ، كُرَةُ الطَّائِرَةِ، السِّبَاحَةُ. Soal meminta identifikasi jenis olahraga yang <em>benar</em> disebutkan dalam teks.</li>
+            <li><strong>Kegiatan literasi:</strong> الْقِرَاءَةُ (membaca), الْكِتَابَةُ (menulis), الْمُطَالَعَةُ (telaah bacaan). Soal menguji apakah siswa bisa membedakan fakta dengan inferensi.</li>
+            <li><strong>Strategi:</strong> Baca teks dengan cermat, tandai setiap aktivitas yang disebutkan, hindari menjawab berdasarkan asumsi di luar teks.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 30&ndash;32 &middot; PGK</span>
+          <h3>Mata Pelajaran &amp; Profesi</h3>
+          <ul>
+            <li><strong>Mata pelajaran umum:</strong> الرِّيَاضِيَّاتُ (matematika), الْعُلُومُ (sains/IPA), اللُّغَةُ الْإِنْدُوْنِيْسِيَّةُ (Bahasa Indonesia), التَّارِيْخُ (sejarah).</li>
+            <li><strong>Mata pelajaran agama:</strong> الْقُرْآنُ الْكَرِيمُ، الْفِقْهُ، الْعَقِيْدَةُ، اللُّغَةُ الْعَرَبِيَّةُ.</li>
+            <li><strong>Profesi di masyarakat:</strong> Mengklasifikasikan profesi yang termasuk خِدْمَةُ الْمُجْتَمَعِ (pelayanan masyarakat) vs profesi mandiri berdasarkan deskripsi dalam teks.</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 33&ndash;35 &middot; PGK</span>
+          <h3>Peristiwa Hijrah &amp; Maulid Nabi</h3>
+          <ul>
+            <li><strong>Pengorbanan kaum Muhajirin:</strong> Meninggalkan harta, rumah, dan keluarga di Makkah demi mempertahankan iman. Soal menguji detail pengorbanan yang disebutkan dalam teks.</li>
+            <li><strong>Maulid Nabi:</strong> Peringatan lahirnya Nabi Muhammad SAW pada 12 Rabiul Awal. Lokasi dan tradisi perayaan berbeda-beda di tiap daerah Indonesia (pembacaan shalawat, pengajian, dll).</li>
+            <li><strong>Kosakata:</strong> الْهِجْرَةُ (hijrah), الْمُهَاجِرُوْنَ (kaum Muhajirin), الْمَوْلِدُ (maulid/kelahiran).</li>
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 36&ndash;38 &middot; PGK</span>
+          <h3>Tarkib Dasar &mdash; Dhomir &amp; Fi&rsquo;il</h3>
+          <ul>
+            <li><strong>Dhomir (Kata Ganti):</strong> أَنَا (saya), نَحْنُ (kami/kita), أَنْتَ (kamu lk), أَنْتِ (kamu pr), هُوَ (dia lk), هِيَ (dia pr), هُمْ (mereka lk), هُنَّ (mereka pr).</li>
+            <li><strong>Fi&rsquo;il Madhi (Kata Kerja Lampau):</strong> Menunjukkan kejadian di masa lalu. Contoh kesesuaian: هُوَ ذَهَبَ ✓, هِيَ ذَهَبَتْ ✓, هُمْ ذَهَبُوْا ✓.</li>
+            <li><strong>Fi&rsquo;il Mudhari&rsquo; (Kata Kerja Kini/Akan):</strong> Diawali huruf مُضَارَعَة (أ، نَ، يَ، تَ). Contoh: أَنَا أَذْهَبُ, هُوَ يَذْهَبُ, هِيَ تَذْهَبُ, نَحْنُ نَذْهَبُ.</li>
+          </ul>
+          <div class="tarkib-box">
+            <p><strong>Tabel Kesesuaian Dhomir &amp; Fi&rsquo;il:</strong><br>
+            <code>أَنَا</code> &rarr; Madhi: كَتَبْتُ &middot; Mudhari&rsquo;: أَكْتُبُ<br>
+            <code>هُوَ</code> &rarr; Madhi: كَتَبَ &middot; Mudhari&rsquo;: يَكْتُبُ<br>
+            <code>هِيَ</code> &rarr; Madhi: كَتَبَتْ &middot; Mudhari&rsquo;: تَكْتُبُ<br>
+            <code>هُمْ</code> &rarr; Madhi: كَتَبُوا &middot; Mudhari&rsquo;: يَكْتُبُوْنَ</p>
+          </div>
+        </article>
+
+        <article class="subject-card">
+          <span class="card-tag">Soal 39&ndash;40 &middot; PGK</span>
+          <h3>Tarkib Lanjutan &mdash; Kosakata Alam &amp; Kata Kerja Tepat</h3>
+          <ul>
+            <li><strong>Kosakata pemandangan alam:</strong> الْجَبَلُ (gunung), الْبَحْرُ (laut), النَّهْرُ (sungai), الْغَابَةُ (hutan), السَّهْلُ (dataran), الشَّلَّالُ (air terjun).</li>
+            <li><strong>Memilih kata kerja tepat:</strong> Soal menyajikan kalimat rumpang dan meminta pemilihan fi&rsquo;il yang sesuai secara makna maupun kesesuaian dhomir. Contoh: الطُّلَّابُ ... فِي الْفَصْلِ (يَجْلِسُوْنَ / تَجْلِسُ / جَلَسْتُ).</li>
+            <li><strong>Tip:</strong> Perhatikan subjek kalimat (dhomir atau isim) sebelum memilih bentuk fi&rsquo;il yang tepat.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BAGIAN 3: BENAR/SALAH (41-50) -->
+    <section class="class-section">
+      <div class="section-head">
+        <div class="section-copy">
+          <span class="section-tag">Benar / Salah &mdash; Soal 41 s/d 50</span>
+          <h2>Validasi Pernyataan</h2>
+          <p>Soal B/S menguji ketelitian. Setiap pernyataan hanya berbeda satu detail kecil dari fakta sebenarnya &mdash; baca ulang materi di bawah sebelum ujian.</p>
+        </div>
+      </div>
+      <div class="validasi-grid">
+
+        <div class="validasi-card">
+          <span class="soal-badge">Soal 41&ndash;42 &middot; B/S</span>
+          <h3>Validasi Data Diri &amp; Fasilitas</h3>
+          <ul>
+            <li>Pernyataan menguji kebenaran alamat dan nomor telepon yang tercantum dalam teks.</li>
+            <li>Fungsi jam sebagai alat ukur waktu: pernyataan bahwa السَّاعَةُ adalah alat ukur waktu &rarr; <strong>Benar</strong>.</li>
+            <li>Latihan: baca ulang teks identitas diri dari materi soal 1-4 dan pastikan hafal setiap detail faktual.</li>
+          </ul>
+        </div>
+
+        <div class="validasi-card">
+          <span class="soal-badge">Soal 43&ndash;44 &middot; B/S</span>
+          <h3>Validasi Sejarah &amp; Tradisi</h3>
+          <ul>
+            <li>Urutan bulan Hijriyah: pernyataan yang menukar posisi bulan (misal Rajab di urutan ke-6) &rarr; <strong>Salah</strong>. Rajab adalah bulan ke-7.</li>
+            <li>Tradisi Maulid Nabi: perayaan dengan pembacaan shalawat dan pengajian adalah tradisi yang umum &rarr; <strong>Benar</strong>.</li>
+            <li>Kunci: hafal urutan 12 bulan Hijriyah dengan tepat (lihat bagian soal 16-19).</li>
+          </ul>
+        </div>
+
+        <div class="validasi-card">
+          <span class="soal-badge">Soal 45&ndash;46 &middot; B/S</span>
+          <h3>Validasi Tarkib &mdash; Gramatika</h3>
+          <ul>
+            <li>Contoh soal: "هِيَ ذَهَبَ إِلَى الْمَدْرَسَةِ" &rarr; <strong>Salah</strong>, seharusnya هِيَ ذَهَبَتْ (fi&rsquo;il madhi muannats).</li>
+            <li>Contoh soal: "أَنَا أَكْتُبُ الدَّرْسَ" &rarr; <strong>Benar</strong>, dhomir أَنَا sesuai dengan fi&rsquo;il mudhari&rsquo; أَكْتُبُ.</li>
+            <li>Kunci: kuasai tabel kesesuaian dhomir-fi&rsquo;il di bagian tarkib dasar (soal 36-38).</li>
+          </ul>
+        </div>
+
+        <div class="validasi-card">
+          <span class="soal-badge">Soal 47&ndash;48 &middot; B/S</span>
+          <h3>Validasi Idofah &amp; Fi&rsquo;il Mazid</h3>
+          <ul>
+            <li><strong>Idofah (اَلْإِضَافَةُ):</strong> Struktur penyandaran dua kata benda, contoh: كِتَابُ الطَّالِبِ (buku milik siswa). Mudof (benda pertama) tidak bertanwin, mudof ilaih (benda kedua) berharakat kasrah/majrur.</li>
+            <li><strong>Fi&rsquo;il Tsulatsi Mazid:</strong> Fi&rsquo;il tiga huruf yang mendapat tambahan (ziyadah). Contoh: دَرَسَ &rarr; دَارَسَ (saling belajar), أَدْرَسَ (menyuruh belajar).</li>
+            <li>Soal menguji apakah penulisan struktur idofah sudah benar atau justru salah harakat/tanwinnya.</li>
+          </ul>
+        </div>
+
+        <div class="validasi-card">
+          <span class="soal-badge">Soal 49&ndash;50 &middot; B/S</span>
+          <h3>Validasi Tema Khaliqul &lsquo;Alam</h3>
+          <ul>
+            <li>Pernyataan tentang kekuasaan Allah: "Allah menciptakan matahari dan bulan sebagai tanda kekuasaan-Nya" &rarr; <strong>Benar</strong> (berdasarkan QS. Fussilat: 37).</li>
+            <li>Pernyataan keliru: "Alam semesta terbentuk sendiri tanpa pencipta" &rarr; <strong>Salah</strong> menurut aqidah Islam.</li>
+            <li>Pastikan memahami konteks ayat-ayat yang berkaitan dengan tema Khaliqul &lsquo;Alam.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="resource-links">
+      <div class="resource-copy">
+        <span class="eyebrow">Lanjutkan belajar</span>
+        <h2>Pilih jalur berikutnya</h2>
+        <p>Kembali ke pusat materi untuk mapel lain, atau buka kisi-kisi lengkap untuk latihan soal lebih banyak.</p>
+      </div>
+      <div class="resource-actions">
+        <a class="btn btn-primary" href="materi.html">Kembali ke Pusat Materi</a>
+        <a class="btn btn-secondary" href="demo.html">Buka Kisi-Kisi Lain</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ringkasan Bahasa Arab ini disusun berdasarkan Kisi-Kisi PSAJ 2025/2026 oleh Tim MGMP Bahasa Arab SMP Lamongan. Materi disajikan ringkas tanpa mengubah inti indikator soal.</p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

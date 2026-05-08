@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -7,7 +8,9 @@
   <link rel="shortcut icon" href="./assets/Luocha.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #f3efe6;
@@ -21,7 +24,11 @@
       --shadow: 0 24px 60px rgba(33, 49, 38, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       min-height: 100vh;
@@ -33,7 +40,10 @@
       overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .site-header {
       position: sticky;
@@ -78,7 +88,11 @@
       box-shadow: 0 10px 24px rgba(47, 110, 98, 0.1);
     }
 
-    .desktop-nav { display: flex; align-items: center; gap: 8px; }
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
     .desktop-nav a,
     .mobile-nav a {
@@ -122,7 +136,9 @@
       gap: 4px;
     }
 
-    .mobile-nav[data-open="true"] { display: grid; }
+    .mobile-nav[data-open="true"] {
+      display: grid;
+    }
 
     .page-shell {
       padding: 48px 0 72px;
@@ -142,7 +158,9 @@
 
     .page-intro,
     .learning-path,
-    .resource-links { padding: clamp(26px, 4vw, 38px); }
+    .resource-links {
+      padding: clamp(26px, 4vw, 38px);
+    }
 
     .eyebrow {
       display: inline-flex;
@@ -157,7 +175,12 @@
       margin-bottom: 18px;
     }
 
-    h1, h2, h3 { font-family: "Literata", serif; letter-spacing: -0.03em; }
+    h1,
+    h2,
+    h3 {
+      font-family: "Literata", serif;
+      letter-spacing: -0.03em;
+    }
 
     h1 {
       font-size: clamp(2.2rem, 4vw, 4rem);
@@ -166,11 +189,25 @@
       max-width: 12ch;
     }
 
-    h2 { font-size: 1.55rem; margin-bottom: 12px; }
-    h3 { font-size: 1.18rem; margin-bottom: 10px; }
+    h2 {
+      font-size: 1.55rem;
+      margin-bottom: 12px;
+    }
 
-    p, li { color: var(--muted); line-height: 1.8; }
-    .intro-copy { max-width: 64ch; }
+    h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .intro-copy {
+      max-width: 64ch;
+    }
 
     .learning-path ol {
       padding-left: 20px;
@@ -223,8 +260,15 @@
       justify-content: space-between;
     }
 
-    .resource-copy { max-width: 46ch; }
-    .resource-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .resource-copy {
+      max-width: 46ch;
+    }
+
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
     .btn {
       display: inline-flex;
@@ -238,21 +282,44 @@
       transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
     }
 
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--accent); color: #f8fbf9; }
-    .btn-primary:hover { background: var(--accent-strong); }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #f8fbf9;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-strong);
+    }
+
     .btn-secondary {
       background: transparent;
       color: var(--text);
       border: 1px solid rgba(47, 110, 98, 0.18);
     }
 
-    .site-footer { padding-bottom: 40px; color: var(--muted); font-size: 0.9rem; }
+    .site-footer {
+      padding-bottom: 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
     @media (max-width: 899px) {
-      .desktop-nav { display: none; }
-      .menu-toggle { display: inline-flex; }
-      .topic-grid { grid-template-columns: 1fr; }
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+
       .resource-links {
         flex-direction: column;
         align-items: flex-start;
@@ -260,20 +327,41 @@
     }
 
     @media (max-width: 640px) {
-      .site-header-inner, .mobile-nav, .page-shell, .site-footer {
+
+      .site-header-inner,
+      .mobile-nav,
+      .page-shell,
+      .site-footer {
         width: min(100% - 24px, 1120px);
       }
-      .page-shell { padding: 28px 0 56px; }
-      .page-intro, .learning-path, .topic-card, .resource-links {
+
+      .page-shell {
+        padding: 28px 0 56px;
+      }
+
+      .page-intro,
+      .learning-path,
+      .topic-card,
+      .resource-links {
         border-radius: 24px;
         padding: 22px;
       }
-      .btn { width: 100%; }
-      .resource-actions { width: 100%; }
-      h1 { max-width: none; }
+
+      .btn {
+        width: 100%;
+      }
+
+      .resource-actions {
+        width: 100%;
+      }
+
+      h1 {
+        max-width: none;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <div class="site-header-inner">
@@ -288,7 +376,8 @@
         <a data-nav href="demo.html">Soal / Kisi-Kisi</a>
         <a data-nav href="about.html">Tentang</a>
       </nav>
-      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+      <button class="menu-toggle" data-menu-toggle="mobile-nav" aria-expanded="false"
+        aria-controls="mobile-nav">Menu</button>
     </div>
     <div id="mobile-nav" class="mobile-nav" data-open="false">
       <a data-nav href="index.html">Beranda</a>
@@ -330,7 +419,8 @@
       <article class="topic-card">
         <span class="topic-meta">Dasar | 8 menit baca</span>
         <h3>Berpikir Komputasional</h3>
-        <p>Belajar memecah masalah, mengenali pola, memilih informasi penting, lalu menyusun solusi langkah demi langkah.</p>
+        <p>Belajar memecah masalah, mengenali pola, memilih informasi penting, lalu menyusun solusi langkah demi
+          langkah.</p>
         <ul>
           <li>Contoh masalah sehari-hari</li>
           <li>Empat pilar utama</li>
@@ -341,7 +431,8 @@
       <article class="topic-card">
         <span class="topic-meta">Dasar | 10 menit baca</span>
         <h3>Algoritma dan Flowchart</h3>
-        <p>Memahami urutan instruksi dan cara menggambarkannya agar orang lain bisa mengikuti logika solusi yang sama.</p>
+        <p>Memahami urutan instruksi dan cara menggambarkannya agar orang lain bisa mengikuti logika solusi yang sama.
+        </p>
         <ul>
           <li>Urutan langkah yang jelas</li>
           <li>Simbol flowchart sederhana</li>
@@ -352,7 +443,8 @@
       <article class="topic-card">
         <span class="topic-meta">Dasar | 8 menit baca</span>
         <h3>Logika Dasar dan Boolean</h3>
-        <p>Memahami konsep benar dan salah yang dipakai komputer saat membuat keputusan melalui aturan logika sederhana.</p>
+        <p>Memahami konsep benar dan salah yang dipakai komputer saat membuat keputusan melalui aturan logika sederhana.
+        </p>
         <ul>
           <li>AND, OR, dan NOT</li>
           <li>Keputusan if-else</li>
@@ -374,7 +466,8 @@
       <article class="topic-card">
         <span class="topic-meta">Pengenalan | 10 menit baca</span>
         <h3>Pengenalan AI untuk SMP</h3>
-        <p>Mengenal AI dari contoh yang dekat dengan kehidupan siswa, sekaligus belajar berpikir kritis soal manfaat dan risikonya.</p>
+        <p>Mengenal AI dari contoh yang dekat dengan kehidupan siswa, sekaligus belajar berpikir kritis soal manfaat dan
+          risikonya.</p>
         <ul>
           <li>Contoh AI sehari-hari</li>
           <li>Perbedaan aturan biasa dan machine learning</li>
@@ -404,6 +497,17 @@
       </article>
     </section>
 
+    <article class="topic-card">
+      <span class="topic-meta">Bahasa Arab</span>
+      <h3>Bahasa Arab</h3>
+      <p>Belajar bahasa arab dimulai dari dasaran sampai paham untuk kedepannya</p>
+      <ul>
+        <li>Ringkasan materi Bahasa Arab</li>
+        <li><a href="arabian.html">Buka halaman Bahasa Arab</a></li>
+      </ul>
+    </article>
+    </section>
+
     <section class="resource-links">
       <div class="resource-copy">
         <span class="eyebrow">Lanjutkan belajar</span>
@@ -422,9 +526,11 @@
   </main>
 
   <footer class="site-footer">
-    <p>Pusat materi ini disusun agar siswa punya jalur masuk yang lebih jelas, baik untuk Informatika maupun mapel ringkas lain yang sudah terintegrasi di Luo-Learn.</p>
+    <p>Pusat materi ini disusun agar siswa punya jalur masuk yang lebih jelas, baik untuk Informatika maupun mapel
+      ringkas lain yang sudah terintegrasi di Luo-Learn.</p>
   </footer>
 
   <script src="./script.js"></script>
 </body>
+
 </html>
